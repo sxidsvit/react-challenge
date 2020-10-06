@@ -3,8 +3,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import asabenehImage from './images/asabeneh.jpg'
 
+
+// To get the root element from the HTML document
+const rootElement = document.querySelector('#root')
 // JSX element, header
-const welcome = 'Welcome to 30 Days Of React'
+const welcome = 'Welcome to 30 Days Of React Challenge'
 const title = 'Getting Started React'
 const subtitle = 'JavaScript Library'
 const author = {
@@ -14,7 +17,7 @@ const author = {
 const date = 'Oct 2, 2020'
 
 // JSX element, header
-const header = (
+const Header = () => (
   <header>
     <div className='header-wrapper'>
       <h1>{welcome}</h1>
@@ -38,7 +41,7 @@ const result = (
 )
 
 const yearBorn = 1820
-const currentYear = new Date().getFullYear()
+const currentYear = 2020
 const age = currentYear - yearBorn
 const personAge = (
   <p>
@@ -47,55 +50,77 @@ const personAge = (
   </p>
 )
 
-// JSX element, main
-const techs = ['HTML', 'CSS', 'JavaScript']
-const techsFormatted = techs.map((tech) => <li>{tech}</li>)
-
-const user = (
-  <div>
+// User Card Component
+const UserCard = () => (
+  <div className='user-card'>
     <img src={asabenehImage} alt='asabeneh image' />
+    <h2>
+      {author.firstName} {author.lastName}
+    </h2>
   </div>
 )
 
 // JSX element, main
-const main = (
+const techs = ['HTML', 'CSS', 'JavaScript']
+const techsFormatted = techs.map((tech) => <li key={tech}>{tech}</li>)
+
+// JSX element, main
+const Main = () => (
   <main>
     <div className='main-wrapper'>
-      <p>
-        Prerequisite to get started{' '}
-        <strong>
-          <em>react.js</em>
-        </strong>
-        :
-      </p>
-      <ul>{techsFormatted}</ul>
-      {result}
-      {personAge}
-      {user}
+      <div>
+        <p>
+          Prerequisite to get started{' '}
+          <strong>
+            <em>react.js</em>
+          </strong>
+          :
+        </p>
+        <ul>{techsFormatted}</ul>
+        {result}
+        {personAge}
+      </div>
+      <UserCard />
     </div>
   </main>
 )
 
-const copyRight = 'Copyright 2020'
+const copyRight = '2020'
 
 // JSX element, footer
-const footer = (
+const Footer = () => (
   <footer>
     <div className='footer-wrapper'>
-      <p>{copyRight}</p>
+      <p>Copyright &copy;{copyRight}</p>
     </div>
   </footer>
 )
 
 // JSX element, app
-const app = (
+const App = () => (
   <div className='app'>
-    {header}
-    {main}
-    {footer}
+    <Header />
+    <Main />
+    <Footer />
   </div>
 )
 
-const rootElement = document.getElementById('root')
-// we render the JSX element using the ReactDOM package
-ReactDOM.render(app, rootElement)
+// we render the App component using the ReactDOM package
+// ReactDOM.render(<App />, rootElement)
+
+
+//  =================================================================
+
+// Hexadecimal color generator
+const hexaColor = () => {
+  let str = '0123456789abcdef'
+  let color = ''
+  for (let i = 0; i < 6; i++) {
+    let index = Math.floor(Math.random() * str.length)
+    color += str[index]
+  }
+  return '#' + color
+}
+
+const HexaColor = () => <div>{hexaColor()}</div>
+ReactDOM.render(<HexaColor />, rootElement)
