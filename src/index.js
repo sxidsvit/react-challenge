@@ -97,7 +97,7 @@ const subscribe = (
 const frontEndTechnologies = (
   <div style={styles.tech} className="d-flex flex-column justify-content-center align-items-center">
     <h6 className="text-center  mb-4 font-weight-bold">Front End Technologies</h6>
-    <div div style={{ display: "flex", flexDirection: "row" }}>
+    <div style={{ display: "flex", flexDirection: "row" }}>
       <img style={styles.imgTech} src={html5Logo} alt="html5Logo" />
       <img style={styles.imgTech} src={css3Logo} alt="css3Logo" />
       <img style={styles.imgTech} src={jsLogo} alt="css3Logo" />
@@ -124,7 +124,7 @@ const userCard = (
     <div className="d-flex flex-wrap">
       {techsFormatted}
     </div>
-    <p>&#8986;&nbsp;Joined on Aug 30, 2020</p>
+    <p><span role="img" aria-label="clock">&#8986;&nbsp;</span>Joined on Aug 30, 2020</p>
   </div>
 )
 
