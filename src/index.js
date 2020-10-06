@@ -1,819 +1,207 @@
-// // index.js
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-// import asabenehImage from './images/asabeneh.jpg'
-
-
-// // To get the root element from the HTML document
-// const rootElement = document.querySelector('#root')
-// // JSX element, header
-// const welcome = 'Welcome to 30 Days Of React Challenge'
-// const title = 'Getting Started React'
-// const subtitle = 'JavaScript Library'
-// const author = {
-//   firstName: 'Asabeneh',
-//   lastName: 'Yetayeh',
-// }
-// const date = 'Oct 2, 2020'
-
-// // JSX element, header
-// const Header = () => (
-//   <header>
-//     <div className='header-wrapper'>
-//       <h1>{welcome}</h1>
-//       <h2>{title}</h2>
-//       <h3>{subtitle}</h3>
-//       <p>
-//         Instructor: {author.firstName} {author.lastName}
-//       </p>
-//       <small>Date: {date}</small>
-//     </div>
-//   </header>
-// )
-
-// const numOne = 3
-// const numTwo = 2
-
-// const result = (
-//   <p>
-//     {numOne} + {numTwo} = {numOne + numTwo}
-//   </p>
-// )
-
-// const yearBorn = 1820
-// const currentYear = 2020
-// const age = currentYear - yearBorn
-// const personAge = (
-//   <p>
-//     {' '}
-//     {author.firstName} {author.lastName} is {age} years old
-//   </p>
-// )
-
-// // User Card Component
-// const UserCard = () => (
-//   <div className='user-card'>
-//     <img src={asabenehImage} alt='asabeneh image' />
-//     <h2>
-//       {author.firstName} {author.lastName}
-//     </h2>
-//   </div>
-// )
-
-// // JSX element, main
-// const techs = ['HTML', 'CSS', 'JavaScript']
-// const techsFormatted = techs.map((tech) => <li key={tech}>{tech}</li>)
-
-// // JSX element, main
-// const Main = () => (
-//   <main>
-//     <div className='main-wrapper'>
-//       <div>
-//         <p>
-//           Prerequisite to get started{' '}
-//           <strong>
-//             <em>react.js</em>
-//           </strong>
-//           :
-//         </p>
-//         <ul>{techsFormatted}</ul>
-//         {result}
-//         {personAge}
-//       </div>
-//       <UserCard />
-//     </div>
-//   </main>
-// )
-
-// const copyRight = '2020'
-
-// // JSX element, footer
-// const Footer = () => (
-//   <footer>
-//     <div className='footer-wrapper'>
-//       <p>Copyright &copy;{copyRight}</p>
-//     </div>
-//   </footer>
-// )
-
-// // JSX element, app
-// const App = () => (
-//   <div className='app'>
-//     <Header />
-//     <Main />
-//     <Footer />
-//   </div>
-// )
-
-// // we render the App component using the ReactDOM package
-// ReactDOM.render(<App />, rootElement)
-
-
-//  =================================================================
-
-// Hexadecimal color generator
-// const hexaColor = () => {
-//   let str = '0123456789abcdef'
-//   let color = ''
-//   for (let i = 0; i < 6; i++) {
-//     let index = Math.floor(Math.random() * str.length)
-//     color += str[index]
-//   }
-//   return '#' + color
-// }
-
-// const HexaColor = () => <div>{hexaColor()}</div>
-// ReactDOM.render(<HexaColor />, rootElement)
-
-
-
-//  =============== The theory examples ==============================
-
-//  (1) 
-
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-
-// const welcome = 'Welcome to 30 Days Of React Challenge'
-// const title = 'Getting Started React'
-// const subtitle = 'JavaScript Library'
-// const author = {
-//   firstName: 'Asabeneh',
-//   lastName: 'Yetayeh',
-// }
-// const date = 'Oct 2, 2020'
-
-
-// // Header Component
-// const Header = (props) => {
-//   console.log('props: ', props);
-//   return (
-//     <header>
-//       <div className='header-wrapper'>
-//         <h1>{welcome}</h1>
-//         <h2>{title}</h2>
-//         <h3>{subtitle}</h3>
-//         <p>
-//           {author.firstName} {author.lastName}
-//         </p>
-//         <small>{date}</small>
-//       </div>
-//     </header>
-//   )
-// }
-
-// // The App, or the parent or the container component
-// // Functional Component
-// const App = () => {
-//   return (
-//     <div className='app'>
-//       <Header />
-//     </div>
-//   )
-// }
-
-// const rootElement = document.getElementById('root')
-
-// ReactDOM.render(<App />, rootElement)
-
-//  (2) 
-
-// Header Component
-
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-
-// const Header = (props) => {
-//   console.log(props) // {welcome:'Welcome to 30 Days Of React'}
-//   return (
-//     <header>
-//       <div className='header-wrapper'>
-//         <h1>{props.welcome}</h1>
-//       </div>
-//     </header>
-//   )
-// }
-
-// // The App, or the parent or the container component
-// // Functional Component
-// const App = () => {
-//   return (
-//     <div className='app'>
-//       <Header welcome='Welcome to 30 Days Of React' />
-//     </div>
-//   )
-// }
-
-// const rootElement = document.getElementById('root')
-
-// ReactDOM.render(<App />, rootElement)
-
-//  (3) 
-
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-
-// // Header Component
-// const Header = (props) => {
-//   console.log(props)
-//   return (
-//     <header>
-//       <div className='header-wrapper'>
-//         <h1>{props.welcome}</h1>
-//         <h2>{props.title}</h2>
-//         <h3>{props.subtitle}</h3>
-//         <p>
-//           {props.firstName} {props.lastName}
-//         </p>
-//         <small>{props.date}</small>
-//       </div>
-//     </header>
-//   )
-// }
-
-// // The App, or the parent or the container component
-// // Functional Component
-// const App = () => (
-//   <div className='app'>
-//     <Header
-//       welcome='Welcome to 30 Days Of React'
-//       title='Getting Started React'
-//       subtitle='JavaScript Library'
-//       firstName='Asabeneh'
-//       lastName='Yetayeh'
-//       date='Oct 4, 2020'
-//     />
-//   </div>
-// )
-
-// const rootElement = document.getElementById('root')
-// ReactDOM.render(<App />, rootElement)
-
-//  (4) 
-
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-
-// // Header Component
-// const Header = (props) => (
-//   <header>
-//     <div className='header-wrapper'>
-//       <h1>{props.welcome}</h1>
-//       <h2>{props.title}</h2>
-//       <h3>{props.subtitle}</h3>
-//       <p>
-//         {props.firstName} {props.lastName}
-//       </p>
-//       <small>{props.date}</small>
-//     </div>
-//   </header>
-// )
-
-// // The App, or the parent or the container component
-// // Functional Component
-// const App = () => {
-//   const welcome = 'Welcome to 30 Days Of React'
-//   const title = 'Getting Started React'
-//   const subtitle = 'JavaScript Library'
-//   const firstName = 'Asabeneh'
-//   const lastName = 'Yetayeh'
-//   const date = 'Oct 4, 2020'
-
-//   return (
-//     <div className='app'>
-//       <Header
-//         welcome={welcome}
-//         title={title}
-//         subtitle={subtitle}
-//         firstName={firstName}
-//         lastName={lastName}
-//         date={date}
-//       />
-//     </div>
-//   )
-// }
-// const rootElement = document.getElementById('root')
-// ReactDOM.render(<App />, rootElement)
-
-// ------ Number props type ---
-
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-
-// const Age = (props) => <div>The person is {props.age} years old.</div>
-// const Weight = (props) => (
-//   <p>The weight of the object on earth is {props.weight} N.</p>
-// )
-
-// // The App, or the parent or the container component
-// // Functional Component
-// const App = () => {
-//   let currentYear = 2020
-//   let birthYear = 1820
-//   const age = currentYear - birthYear
-//   const gravity = 9.81
-//   const mass = 75
-
-//   return (
-//     <div className='app'>
-//       <Age age={age} />
-//       <Weight weight={gravity * mass} />
-//     </div>
-//   )
-// }
-// const rootElement = document.getElementById('root')
-// ReactDOM.render(<App />, rootElement)
-
-
-// Array props type
-
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-
-// // Skills Component
-// const Skills = (props) => {
-//   // modifying the skills array
-//   const skillList = props.skills.map((skill, i) => <li key={i}>{skill}</li>)
-//   return <ul>{skillList}</ul>
-// }
-
-// const App = () => (
-//   <div className='app'>
-//     <Skills skills={['HTML', 'CSS', 'JavaScript']} />
-//   </div>
-// )
-
-// const rootElement = document.getElementById('root')
-// ReactDOM.render(<App />, rootElement)
-
-
-// Object props type
-
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-
-// const showDate = (time) => {
-//   const months = [
-//     'January',
-//     'February',
-//     'March',
-//     'April',
-//     'May',
-//     'June',
-//     'July',
-//     'August',
-//     'September',
-//     'October',
-//     'November',
-//     'December',
-//   ]
-
-//   const month = months[time.getMonth()].slice(0, 3)
-//   const year = time.getFullYear()
-//   const date = time.getDate()
-//   return ` ${month} ${date}, ${year}`
-// }
-// // Header Component
-// const Header = (props) => {
-//   return (
-//     <header>
-//       <div className='header-wrapper'>
-//         <h1>{props.data.welcome}</h1>
-//         <h2>{props.data.title}</h2>
-//         <h3>{props.data.subtitle}</h3>
-//         <p>
-//           {props.data.author.firstName} {props.data.author.lastName}
-//         </p>
-//         <small>{showDate(props.data.date)}</small>
-//       </div>
-//     </header>
-//   )
-// }
-
-// // The App, or the parent or the container component
-// // Functional Component
-// const App = () => {
-//   const data = {
-//     welcome: 'Welcome to 30 Days Of React',
-//     title: 'Getting Started React',
-//     subtitle: 'JavaScript Library',
-//     author: {
-//       firstName: 'Asabeneh',
-//       lastName: 'Yetayeh',
-//     },
-//     date: new Date(), // date needs to be formatted to a human readable format
-//   }
-
-//   return (
-//     <div className='app'>
-//       <Header data={data} />
-//     </div>
-//   )
-// }
-// const rootElement = document.getElementById('root')
-// ReactDOM.render(<App />, rootElement)
-
-// Function prop types
-
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-
-// // A button component
-
-// const Button = (props) => <button onClick={props.onClick}>{props.text}</button>
-
-// // The App, or the parent or the container component
-// // Functional Component
-// const App = () => {
-//   const sayHi = () => {
-//     alert('Hi')
-//   }
-
-//   return (
-//     <div className='app'>
-//       <Button text='Say Hi' onClick={sayHi} />
-//     </div>
-//   )
-// }
-// const rootElement = document.getElementById('root')
-// // we render the JSX element using the ReactDOM package
-// ReactDOM.render(<App />, rootElement)
-
-
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-
-// // A button component
-
-// const Button = (props) => <button onClick={props.onClick}>{props.text}</button>
-
-// // The App, or the parent or the container component
-// // Functional Component
-// const App = () => {
-//   const greetPeople = () => {
-//     alert('Welcome to 30 Days Of React Challenge, 2020')
-//   }
-
-//   return (
-//     <div className='app'>
-//       <Button text='Greet People' onClick={greetPeople} />
-//       <Button text='Show Time' onClick={() => alert(new Date().getMounth())} />
-//     </div>
-//   )
-// }
-// const rootElement = document.getElementById('root')
-// ReactDOM.render(<App />, rootElement)
-
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-
-// // Function to display time in Mon date, year format eg Oct 4, 2020
-// const showDate = (time) => {
-//   const months = [
-//     'January',
-//     'February',
-//     'March',
-//     'April',
-//     'May',
-//     'June',
-//     'July',
-//     'August',
-//     'September',
-//     'October',
-//     'November',
-//     'December',
-//   ]
-
-//   const month = months[time.getMonth()].slice(0, 3)
-//   const year = time.getFullYear()
-//   const date = time.getDate()
-//   return ` ${month} ${date}, ${year}`
-// }
-
-// // A button component
-
-// const Button = (props) => <button onClick={props.onClick}>{props.text}</button>
-
-// // The App, or the parent or the container component
-// // Functional Component
-// const App = () => {
-//   const handleTime = () => {
-//     alert(showDate(new Date()))
-//   }
-//   const greetPeople = () => {
-//     alert('Welcome to 30 Days Of React Challenge, 2020')
-//   }
-//   return (
-//     <div className='app'>
-//       <Button text='show time' onClick={handleTime} />
-//       <Button text='Greet People' onClick={greetPeople} />
-//     </div>
-//   )
-// }
-// const rootElement = document.getElementById('root')
-// ReactDOM.render(<App />, rootElement)
-
-
-// Destructuring props
-
-// (1) Step by step destructuring
-
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-
-// const showDate = (time) => {
-//   const months = [
-//     'January',
-//     'February',
-//     'March',
-//     'April',
-//     'May',
-//     'June',
-//     'July',
-//     'August',
-//     'September',
-//     'October',
-//     'November',
-//     'December',
-//   ]
-
-//   const month = months[time.getMonth()].slice(0, 3)
-//   const year = time.getFullYear()
-//   const date = time.getDate()
-//   return ` ${month} ${date}, ${year}`
-// }
-// // Header Component
-// const Header = ({data}) => {
-//   // const data = props.data
-//   const { welcome, title, subtitle, author:{ firstName, lastName } , date } = data
-//   // const { firstName, lastName } = author
-//   return (
-//     <header>
-//       <div className='header-wrapper'>
-//         <h1>{welcome}</h1>
-//         <h2>{title}</h2>
-//         <h3>{subtitle}</h3>
-//         <p>
-//           {firstName} {lastName}
-//         </p>
-//         <small>{showDate(date)}</small>
-//       </div>
-//     </header>
-//   )
-// }
-
-// // The App, or the parent or the container component
-// // Functional Component
-// const App = () => {
-//   const data = {
-//     welcome: 'Welcome to 30 Days Of React',
-//     title: 'Getting Started React',
-//     subtitle: 'JavaScript Library',
-//     author: {
-//       firstName: 'Asabeneh',
-//       lastName: 'Yetayeh',
-//     },
-//     date: new Date(),
-//   }
-
-//   return (
-//     <div className='app'>
-//       <Header data={data} />
-//     </div>
-//   )
-// }
-// const rootElement = document.getElementById('root')
-// // we render the JSX element using the ReactDOM package
-// ReactDOM.render(<App />, rootElement)
-
-// (3) Destructuring the props inside the parenthesis
-
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-
-// const showDate = (time) => {
-//   const months = [
-//     'January',
-//     'February',
-//     'March',
-//     'April',
-//     'May',
-//     'June',
-//     'July',
-//     'August',
-//     'September',
-//     'October',
-//     'November',
-//     'December',
-//   ]
-
-//   const month = months[time.getMonth()].slice(0, 3)
-//   const year = time.getFullYear()
-//   const date = time.getDate()
-//   return ` ${month} ${date}, ${year}`
-// }
-// // Header Component
-// const Header = ({
-//   data: {
-//     welcome,
-//     title,
-//     subtitle,
-//     author: { firstName, lastName },
-//     date,
-//   },
-// }) => {
-//   return (
-//     <header>
-//       <div className='header-wrapper'>
-//         <h1>{welcome}</h1>
-//         <h2>{title}</h2>
-//         <h3>{subtitle}</h3>
-//         <p>
-//           {firstName} {lastName}
-//         </p>
-//         <small>{showDate(date)}</small>
-//       </div>
-//     </header>
-//   )
-// }
-
-// // The App, or the parent or the container component
-// // Functional Component
-// const App = () => {
-//   const data = {
-//     welcome: 'Welcome to 30 Days Of React',
-//     title: 'Getting Started React',
-//     subtitle: 'JavaScript Library',
-//     author: {
-//       firstName: 'Asabeneh',
-//       lastName: 'Yetayeh',
-//     },
-//     date: new Date(),
-//   }
-
-//   return (
-//     <div className='app'>
-//       <Header data={data} />
-//     </div>
-//   )
-// }
-// const rootElement = document.getElementById('root')
-// ReactDOM.render(<App />, rootElement)
-
-
-// Now, let's destructure all the components we had and assemble them together
-
+// index.js
 import React from 'react'
 import ReactDOM from 'react-dom'
 import asabenehImage from './images/asabeneh.jpg'
+import html5Logo from './images/html_logo.png'
+import css3Logo from './images/css_logo.png'
+import jsLogo from './images/js_logo.png'
+import reactLogo from './images/react_logo.png'
 
-// Fuction to show month date year
+// FrontEndTechnologies
 
-const showDate = (time) => {
-  const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ]
 
-  const month = months[time.getMonth()].slice(0, 3)
-  const year = time.getFullYear()
-  const date = time.getDate()
-  return ` ${month} ${date}, ${year}`
-}
+const techImages = [
+  { imgLink: html5Logo, imgAltText: 'html5Logo' },
+  { imgLink: css3Logo, imgAltText: 'css3Logo' },
+  { imgLink: jsLogo, imgAltText: 'jsLogo' },
+  { imgLink: reactLogo, imgAltText: 'reactLogo' }
+]
 
-// Header Component
-const Header = ({
-  data: {
-    welcome,
-    title,
-    subtitle,
-    author: { firstName, lastName },
-    date,
-  },
-}) => {
+const FrontEndTechnologies = ({ techImages }) => {
+  // console.log('techImages: ', techImages);
+  const styles = {
+    imgTech: {
+      height: "200px",
+      width: "auto"
+    },
+    tech: {
+      backgroundColor: "#F0F1F7",
+      padding: "2rem",
+      margine: "1rem"
+    }
+  }
+
   return (
-    <header>
-      <div className='header-wrapper'>
-        <h1>{welcome}</h1>
-        <h2>{title}</h2>
-        <h3>{subtitle}</h3>
-        <p>
-          {firstName} {lastName}
-        </p>
-        <small>{showDate(date)}</small>
+    <div style={styles.tech} className="d-flex flex-column justify-content-center align-items-center">
+      <h6 className="text-center  mb-4 font-weight-bold">Front End Technologies</h6>
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        {techImages.map((_, i) => (
+          <img key={i} style={styles.imgTech} src={techImages[i].imgLink} alt={techImages[i].imgAltText} />
+        ))}
+
       </div>
-    </header>
+    </div>
   )
 }
 
-// TechList Component
-const TechList = ({ techs }) => {
-  const techList = techs.map((tech) => <li key={tech}>{tech}</li>)
-  return techList
+//  UserCard 
+
+const author = {
+  firstName: 'Asabeneh',
+  lastName: 'Yetayeh',
 }
 
-// User Card Component
-const UserCard = ({ user: { firstName, lastName, image } }) => (
-  <div className='user-card'>
-    <img src={image} alt={firstName} />
-    <h2>
-      {firstName}
-      {lastName}
-    </h2>
+const styles = {
+  userSkill: {
+    borderRadius: "5px",
+    marginRight: "10px",
+    marginBottom: "10px",
+    border: "1px solid #2ACFCF",
+    backgroundColor: "#2ACFCF",
+    color: "#fff",
+    padding: "5px"
+  }
+}
+
+const techs = ['HTML', 'CSS', 'JavaScript', 'Sass', 'JS', 'React', 'Redux', 'Node', 'MongoDB', 'Python', 'Flask', 'Django', 'MySQL', 'GraphQL', 'Docker', 'Heroku', 'Git']
+const techsFormatted = techs.map((tech, i) =>
+  <span key={i} style={styles.userSkill} >{tech}</span>)
+
+const UserCard = () => {
+  const styles = {
+    userCardBorder: {
+      border: "1px solid #2ACFCF",
+      borderRadius: "20px",
+      padding: "1rem",
+      margin: "1rem"
+    },
+    UserCardMark: {
+      width: "10px",
+      height: "10px",
+      padding: "6px",
+      borderRadius: "50%",
+      backgroundColor: "#2ACFCF",
+      color: "#fff"
+    },
+    userCardImg: {
+      height: "150px",
+      width: "auto",
+      borderRadius: "50%",
+      marginBottom: "0.5rem"
+    }
+  }
+
+  return (
+    <div style={styles.userCardBorder}>
+      <img style={styles.userCardImg} src={asabenehImage} alt="html5Logo" />
+      <p><strong>{author.firstName}&nbsp;{author.lastName}</strong>&nbsp;
+      <strong style={styles.UserCardMark}>&#10004;</strong>
+      </p>
+      <p>Senior Developer, Finland</p>
+      <div className="d-flex flex-wrap">
+        {techsFormatted}
+      </div>
+      <p><span role="img" aria-label="clock">&#8986;&nbsp;</span>Joined on Aug 30, 2020</p>
+    </div>
+  )
+}
+
+//  Subscribe
+
+const Subscribe = () => {
+  const styles = {
+    subscribeBorder: {
+      border: "1px solid #C2E6F4",
+      backgroundColor: "#C2E6F4",
+      borderRadius: "20px",
+      padding: "1rem",
+      margin: "1rem"
+    },
+    subscribeH1: {
+      fontSize: "2rem",
+      fontWeight: "300",
+      letterSpacing: "0px"
+    },
+    subscribeButton: {
+      backgroundColor: "#F37474",
+      color: "#fff",
+      padding: "0.5rem",
+      width: "16rem",
+      borderStyle: "none",
+      borderRadius: "4px",
+      borderColor: "#F37474",
+      fontWeight: "300",
+      marginTop: "1rem"
+    },
+    subscribeInput: {
+      margin: "1rem",
+      width: "30%",
+      borderColor: "#C2E6F4",
+      borderStyle: "none",
+      borderRadius: "4px",
+      padding: "0.5rem 2rem"
+    }
+  }
+
+  return (
+    <div className="d-flex flex-column justify-content-center align-items-center"
+      style={styles.subscribeBorder} >
+      <h1 style={styles.subscribeH1}>SUBSCRIBE</h1>
+      <p>Sign up with your email address to receive news and updates</p>
+      <div className="d-flex justify-content-around " >
+        <input style={styles.subscribeInput} type="text" placeholder="First name" />
+        <input style={styles.subscribeInput} type="text" placeholder="Lirst name" />
+        <input style={styles.subscribeInput} type="text" placeholder="Email" />
+      </div>
+      <button style={styles.subscribeButton}>Subscribe</button>
+    </div>
+  )
+}
+
+// Hexadecimal color generator
+
+const hexaColor = () => {
+  let str = '0123456789abcdef'
+  let color = ''
+  for (let i = 0; i < 6; i++) {
+    let index = Math.floor(Math.random() * str.length)
+    color += str[index]
+  }
+  return '#' + color
+}
+
+const HexaColor = () => {
+  const styles = {
+    hexaColor: {
+      padding: "1rem",
+      backgroundColor: hexaColor(),
+      textAlign: "center",
+      color: "#fff",
+      fontWeight: "400",
+      marginBottom: "0.2rem"
+    }
+  }
+
+  return (
+    <div style={styles.hexaColor}>
+      { hexaColor()}
+    </div >
+  )
+}
+
+// JSX element, app
+const App = (
+  <div className='app'>
+    <div className='main-wrapper'>
+      <FrontEndTechnologies techImages={techImages} />
+      <UserCard />
+      <Subscribe />
+      {
+        [1, 1, 1, 1, 1].map((elem, i) => <HexaColor key={i} />)
+      }
+    </div>
   </div>
 )
 
-// A button component
-
-const Button = ({ text, onClick, style }) => (
-  <button style={style} onClick={onClick}>
-    {text}
-  </button>
-)
-
-// CSS styles in JavaScript Object
-const buttonStyles = {
-  backgroundColor: '#61dbfb',
-  padding: 10,
-  border: 'none',
-  borderRadius: 5,
-  margin: 3,
-  cursor: 'pointer',
-  fontSize: 18,
-  color: 'white',
-}
-
-// Main Component
-const Main = ({ user, techs, greetPeople, handleTime }) => (
-  <main>
-    <div className='main-wrapper'>
-      <p>Prerequisite to get started react.js:</p>
-      <ul>
-        <TechList techs={techs} />
-      </ul>
-      <UserCard user={user} />
-      <Button text='Greet People' onClick={greetPeople} style={buttonStyles} />
-      <Button text='Show Time' onClick={handleTime} style={buttonStyles} />
-    </div>
-  </main>
-)
-
-// Footer Component
-const Footer = ({ copyRight }) => (
-  <footer>
-    <div className='footer-wrapper'>
-      <p>Copyright {copyRight.getFullYear()}</p>
-    </div>
-  </footer>
-)
-
-// The App, or the parent or the container component
-// Functional Component
-const App = () => {
-  const data = {
-    welcome: 'Welcome to 30 Days Of React',
-    title: 'Getting Started React',
-    subtitle: 'JavaScript Library',
-    author: {
-      firstName: 'Asabeneh',
-      lastName: 'Yetayeh',
-    },
-    date: new Date(), // date needs to be formatted to a human readable format
-  }
-  const date = new Date()
-  const techs = ['HTML', 'CSS', 'JavaScript']
-  // copying the author from data object to user variable using spread operator
-  const user = { ...data.author, image: asabenehImage }
-
-  const handleTime = () => {
-    alert(showDate(new Date()))
-  }
-  const greetPeople = () => {
-    alert('Welcome to 30 Days Of React Challenge, 2020')
-  }
-
-  return (
-    <div className='app'>
-      <Header data={data} />
-      <Main
-        user={user}
-        techs={techs}
-        handleTime={handleTime}
-        greetPeople={greetPeople}
-      />
-      <Footer copyRight={date} />
-    </div>
-  )
-}
 const rootElement = document.getElementById('root')
-ReactDOM.render(<App />, rootElement)
+ReactDOM.render(App, rootElement)
