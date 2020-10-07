@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom'
 //  ================== component ==============================================
 
 const Square = ({ color, number }) => {
-  console.log('Square color: ', color);
   const styles = {
     square: {
       width: "120px",
@@ -129,7 +128,7 @@ const App = () => {
   for (let number = 0; number < 32; number++) {
     let color = numberColor(number, colors)
     numberList.push(
-      <Square color={color} number={number} />
+      <Square color={color} number={number} key={number + 1} />
     )
   }
 
@@ -156,7 +155,6 @@ const App = () => {
 
   const countriesList = []
   const totalWorld = tenHighestPopulation[0].population
-  console.log('totalWorld: ', totalWorld);
   tenHighestPopulation.map((country, inx) => {
     return countriesList.push(
       <CountryPopulation country={country} totalWorld={totalWorld} key={inx} />
