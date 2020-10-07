@@ -51,7 +51,7 @@ const TechsFormatted = ({ techs2 }) => {
   }
 
   return (
-    techs.map((tech, i) =>
+    techs2.map((tech, i) =>
       <span key={i} style={styles.userSkill} >{tech}</span>)
   )
 }
@@ -142,74 +142,78 @@ const HexaColor = () => {
   return (
     <div style={styles.hexaColor}>
       { hexaColor()}
-    </div >
+    </div>
   )
 }
 
-//  Data for App componnent
-const techImages = [
-  { imgLink: html5Logo, imgAltText: 'html5Logo' },
-  { imgLink: css3Logo, imgAltText: 'css3Logo' },
-  { imgLink: jsLogo, imgAltText: 'jsLogo' },
-  { imgLink: reactLogo, imgAltText: 'reactLogo' }
-]
-
-const author = {
-  firstName: 'Asabeneh',
-  lastName: 'Yetayeh',
-}
-
-const techs = ['HTML', 'CSS', 'JavaScript', 'Sass', 'JS', 'React', 'Redux', 'Node', 'MongoDB', 'Python', 'Flask', 'Django', 'MySQL', 'GraphQL', 'Docker', 'Heroku', 'Git']
-
-
-const subscribeStyles = {
-  subscribeBorder: {
-    border: "1px solid #C2E6F4",
-    backgroundColor: "#C2E6F4",
-    borderRadius: "20px",
-    padding: "1rem",
-    margin: "1rem"
-  },
-  subscribeH1: {
-    fontSize: "2rem",
-    fontWeight: "300",
-    letterSpacing: "0px"
-  },
-  subscribeButton: {
-    backgroundColor: "#F37474",
-    color: "#fff",
-    padding: "0.5rem",
-    width: "16rem",
-    borderStyle: "none",
-    borderRadius: "4px",
-    borderColor: "#F37474",
-    fontWeight: "300",
-    marginTop: "1rem"
-  },
-  subscribeInput: {
-    margin: "1rem",
-    width: "30%",
-    borderColor: "#C2E6F4",
-    borderStyle: "none",
-    borderRadius: "4px",
-    padding: "0.5rem 2rem"
-  }
-}
 
 
 // JSX element App
-const App = (
-  <div className='app'>
-    <div className='main-wrapper'>
-      <FrontEndTechnologies techImages={techImages} />
-      <UserCard author={author} techs={techs} />
-      <Subscribe styles={subscribeStyles} />
-      {
-        [1, 1, 1, 1, 1].map((_, i) => <HexaColor key={i} />)
-      }
-    </div>
-  </div>
-)
+const App = () => {
+  //  Data for App componnent
+  const techImages = [
+    { imgLink: html5Logo, imgAltText: 'html5Logo' },
+    { imgLink: css3Logo, imgAltText: 'css3Logo' },
+    { imgLink: jsLogo, imgAltText: 'jsLogo' },
+    { imgLink: reactLogo, imgAltText: 'reactLogo' }
+  ]
 
+  const author = {
+    firstName: 'Asabeneh',
+    lastName: 'Yetayeh',
+  }
+
+  const techs = ['HTML', 'CSS', 'JavaScript', 'Sass', 'JS', 'React', 'Redux', 'Node', 'MongoDB', 'Python', 'Flask', 'Django', 'MySQL', 'GraphQL', 'Docker', 'Heroku', 'Git']
+
+
+  const subscribeStyles = {
+    subscribeBorder: {
+      border: "1px solid #C2E6F4",
+      backgroundColor: "#C2E6F4",
+      borderRadius: "20px",
+      padding: "1rem",
+      margin: "1rem"
+    },
+    subscribeH1: {
+      fontSize: "2rem",
+      fontWeight: "300",
+      letterSpacing: "0px"
+    },
+    subscribeButton: {
+      backgroundColor: "#F37474",
+      color: "#fff",
+      padding: "0.5rem",
+      width: "16rem",
+      borderStyle: "none",
+      borderRadius: "4px",
+      borderColor: "#F37474",
+      fontWeight: "300",
+      marginTop: "1rem"
+    },
+    subscribeInput: {
+      margin: "1rem",
+      width: "30%",
+      borderColor: "#C2E6F4",
+      borderStyle: "none",
+      borderRadius: "4px",
+      padding: "0.5rem 2rem"
+    }
+  }
+
+  return (
+    <div className='app'>
+      <div className='main-wrapper'>
+        <FrontEndTechnologies techImages={techImages} />
+        <UserCard author={author} techs={techs} />
+        <Subscribe styles={subscribeStyles} />
+        {
+          [1, 1, 1, 1, 1].map((_, i) => <HexaColor key={i} />)
+        }
+      </div>
+    </div>
+  )
+
+
+}
 const rootElement = document.getElementById('root')
-ReactDOM.render(App, rootElement)
+ReactDOM.render(<App />, rootElement)
