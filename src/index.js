@@ -4,65 +4,70 @@ import asabenehImage from './images/asabeneh.jpg'
 
 // Fuction to show month date year
 
-const showDate = (time) => {
-  const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ]
+class ShowDate extends React.Component {
 
-  const month = months[time.getMonth()].slice(0, 3)
-  const year = time.getFullYear()
-  const date = time.getDate()
-  return ` ${month} ${date}, ${year}`
+  render() {
+    const { time } = this.props
+    const months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ]
+
+    const month = months[time.getMonth()].slice(0, 3)
+    const year = time.getFullYear()
+    const date = time.getDate()
+
+    return (` ${month} ${date}, ${year}`)
+  }
 }
 
 // User Card Component
-const UserCard = ({ user: { firstName, lastName, image } }) => (
-  <div className='user-card'>
-    <img src={image} alt={firstName} />
-    <h2>
-      {firstName}
-      {lastName}
-    </h2>
-  </div>
-)
+class UserCard extends React.Component {
+
+  render() {
+    const { user: { firstName, lastName, image } } = this.props
+
+    return (
+      <div className='user-card'>
+        <img src={image} alt={firstName} />
+        <h2>
+          {firstName}
+          {lastName}
+        </h2>
+      </div>
+    )
+  }
+}
 
 // A button component
-const Button = ({ text, onClick, style }) => (
-  <button style={style} onClick={onClick}>
-    {text}
-  </button>
-)
+class Button extends React.Component {
 
-// CSS styles in JavaScript Object
-const buttonStyles = {
-  backgroundColor: '#61dbfb',
-  padding: 10,
-  border: 'none',
-  borderRadius: 5,
-  margin: 3,
-  cursor: 'pointer',
-  fontSize: 18,
-  color: 'white',
+  render() {
+    const { text, onClick, style } = this.props
+    return (
+      <button style={style} onClick={onClick}>
+        {text}
+      </button>
+    )
+  }
 }
 
 // class based component
 class Header extends React.Component {
-  constructor(props) {
-    super(props)
-    // the code inside the constructor run before any other code
-  }
+
   render() {
+    const { style } = this.props
+    console.log('Header style: ', style);
     const {
       welcome,
       title,
@@ -72,7 +77,7 @@ class Header extends React.Component {
     } = this.props.data
 
     return (
-      <header style={this.props.styles}>
+      <header style={style}>
         <div className='header-wrapper'>
           <h1>{welcome}</h1>
           <h2>{title}</h2>
@@ -87,22 +92,37 @@ class Header extends React.Component {
   }
 }
 
-const Count = ({ count, addOne, minusOne }) => (
-  <div>
-    <h1>{count} </h1>
-    <div>
-      <Button text='+1' onClick={addOne} style={buttonStyles} />
-      <Button text='-1' onClick={minusOne} style={buttonStyles} />
-    </div>
-  </div>
-)
+class Count extends React.Component {
+
+  render() {
+    const { count, addOne, minusOne } = this.props
+    const buttonStyles = {
+      backgroundColor: '#61dbfb',
+      padding: 10,
+      border: 'none',
+      borderRadius: 5,
+      margin: 3,
+      cursor: 'pointer',
+      fontSize: 18,
+      color: 'white',
+    }
+
+    return (
+      <div >
+        <h1>{count} </h1>
+        <div>
+          <Button text='+1' onClick={addOne} style={buttonStyles} />
+          <Button text='-1' onClick={minusOne} style={buttonStyles} />
+        </div>
+      </div>
+    )
+  }
+}
 
 // TechList Component
 // class base component
 class TechList extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+
   render() {
     const { techs } = this.props
     const techsFormatted = techs.map((tech) => <li key={tech}>{tech}</li>)
@@ -113,10 +133,9 @@ class TechList extends React.Component {
 // Main Component
 // Class Component
 class Main extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+
   render() {
+
     const {
       techs,
       user,
@@ -127,9 +146,21 @@ class Main extends React.Component {
       addOne,
       minusOne,
     } = this.props
+
+    const buttonStyles = {
+      backgroundColor: '#61dbfb',
+      padding: 10,
+      border: 'none',
+      borderRadius: 5,
+      margin: 3,
+      cursor: 'pointer',
+      fontSize: 18,
+      color: 'white',
+    }
+
     return (
       <main>
-        <div className='main-wrapper'>
+        <div className='main-wrapper' style={this.props.style}>
           <p>Prerequisite to get started react.js:</p>
           <ul>
             <TechList techs={techs} />
@@ -156,14 +187,13 @@ class Main extends React.Component {
 // Footer Component
 // Class component
 class Footer extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+
   render() {
+    const { style, date } = this.props
     return (
-      <footer>
-        <div className='footer-wrapper'>
-          <p>Copyright {this.props.date.getFullYear()}</p>
+      <footer style={style}>
+        <div className='footer-wrapper' >
+          <p>Copyright {date.getFullYear()}</p>
         </div>
       </footer>
     )
@@ -178,27 +208,7 @@ class App extends React.Component {
       color: '#000000',
     },
   }
-  showDate = (time) => {
-    const months = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ]
 
-    const month = months[time.getMonth()].slice(0, 3)
-    const year = time.getFullYear()
-    const date = time.getDate()
-    return ` ${month} ${date}, ${year}`
-  }
   addOne = () => {
     this.setState({ count: this.state.count + 1 })
   }
@@ -208,7 +218,8 @@ class App extends React.Component {
     this.setState({ count: this.state.count - 1 })
   }
   handleTime = () => {
-    alert(this.showDate(new Date()))
+    // alert(this.showDate(new Date()))
+    alert(<ShowDate time={(new Date())} />)
   }
   greetPeople = () => {
     alert('Welcome to 30 Days Of React Challenge, 2020')
@@ -216,8 +227,8 @@ class App extends React.Component {
   changeBackground = () => {
     const morningStyle = { backgroundColor: '#FFFFFF', color: '#000000', }
     const eveningStyle = { backgroundColor: '#000000', color: '#FFFFFF', }
-    // const morningStyle = { backgroundColor: '#E4CA7C', color: '#4E3D36', }
-    // const eveningStyle = { backgroundColor: '#4E3D36', color: '#E4CA7C', }
+    // const morningStyle = {backgroundColor: '#E4CA7C', color: '#4E3D36', }
+    // const eveningStyle = {backgroundColor: '#4E3D36', color: '#E4CA7C', }
     const styles = this.state.styles.backgroundColor === morningStyle.backgroundColor ? eveningStyle : morningStyle
     this.setState({ styles })
     console.log('this.state.styles: ', this.state.styles);
@@ -235,14 +246,15 @@ class App extends React.Component {
       date: 'Oct 7, 2020',
     }
     const techs = ['HTML', 'CSS', 'JavaScript']
-    const date = new Date()
+
     // copying the author from data object to user variable using spread operator
     const user = { ...data.author, image: asabenehImage }
 
     return (
       <div className='app' style={this.state.styles}>
-        <Header data={data} />
+        <Header data={data} style={this.state.styles} />
         <Main
+          style={this.state.styles}
           user={user}
           techs={techs}
           handleTime={this.handleTime}
@@ -252,7 +264,7 @@ class App extends React.Component {
           minusOne={this.minusOne}
           count={this.state.count}
         />
-        <Footer date={new Date()} />
+        <Footer date={new Date()} style={this.state.styles} />
       </div>
     )
   }
