@@ -1,131 +1,3 @@
-// index.js
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-
-// class App extends React.Component {
-//   // declaring state
-//   state = {
-//     count: 0,
-//   }
-//   render() {
-//     // accessing the state value
-//     const count = this.state.count
-//     return (
-//       <div className='App'>
-//         <h1>{count} </h1>
-//       </div>
-//     )
-//   }
-// }
-// const rootElement = document.getElementById('root')
-// ReactDOM.render(<App />, rootElement)
-
-//  ***********************************************************************************************
-
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-// class App extends React.Component {
-//   // declaring state
-//   state = {
-//     count: 0,
-//   }
-//   render() {
-//     // accessing the state value
-//     const count = this.state.count
-//     console.log('state: ', this.state);
-
-//     return (
-//       <div className='App'>
-//         <h1>{count} </h1>
-//         <button onClick={() => this.setState({ count: this.state.count + 1 })}>
-//           Add One
-//         </button>
-//       </div>
-//     )
-//   }
-// }
-// const rootElement = document.getElementById('root')
-// ReactDOM.render(<App />, rootElement)
-
-//  ***********************************************************************************************
-
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-// class App extends React.Component {
-//   // declaring state
-//   state = {
-//     count: 0,
-//   }
-//   // method which add one to the state
-
-//   addOne = () => {
-//     this.setState({ count: this.state.count + 1 })
-//   }
-
-//   // method which subtract one to the state
-//   minusOne = () => {
-//     this.setState({ count: this.state.count - 1 })
-//   }
-//   render() {
-//     // accessing the state value
-//     const count = this.state.count
-//     return (
-//       <div className='App'>
-//         <h1>{count} </h1>
-
-//         <div>
-//           <button className='btn btn-add' onClick={this.addOne}>
-//             +1
-//           </button>{' '}
-//           <button className='btn btn-minus' onClick={this.minusOne}>
-//             -1
-//           </button>
-//         </div>
-//       </div>
-//     )
-//   }
-// }
-// const rootElement = document.getElementById('root')
-// ReactDOM.render(<App />, rootElement)
-
-//  ***********************************************************************************************
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-// class App extends React.Component {
-//   // declaring state
-//   state = {
-//     image: 'https://www.smithsstationah.com/imagebank/eVetSites/Feline/01.jpg',
-//   }
-//   changeAnimal = () => {
-//     let dogURL =
-//       'https://static.onecms.io/wp-content/uploads/sites/12/2015/04/dogs-pembroke-welsh-corgi-400x400.jpg'
-//     let catURL =
-//       'https://www.smithsstationah.com/imagebank/eVetSites/Feline/01.jpg'
-//     let image = this.state.image === catURL ? dogURL : catURL
-//     this.setState({ image })
-//   }
-
-//   render() {
-//     // accessing the state value
-//     return (
-//       <div className='App'>
-//         <h1>30 Days Of React</h1>
-//         <div className='animal'>
-//           <img src={this.state.image} alt='animal' />
-//         </div>
-
-//         <button onClick={this.changeAnimal} className='btn btn-add'>
-//           Change
-//         </button>
-//       </div>
-//     )
-//   }
-// }
-// const rootElement = document.getElementById('root')
-// ReactDOM.render(<App />, rootElement)
-
-//  ***********************************************************************************************
-
 import React from 'react'
 import ReactDOM from 'react-dom'
 import asabenehImage from './images/asabeneh.jpg'
@@ -191,7 +63,6 @@ class Header extends React.Component {
     // the code inside the constructor run before any other code
   }
   render() {
-    console.log(this.props.data)
     const {
       welcome,
       title,
@@ -303,8 +174,8 @@ class App extends React.Component {
   state = {
     count: 0,
     styles: {
-      backgroundColor: '',
-      color: '',
+      backgroundColor: '#FFFFFF',
+      color: '#000000',
     },
   }
   showDate = (time) => {
@@ -342,7 +213,14 @@ class App extends React.Component {
   greetPeople = () => {
     alert('Welcome to 30 Days Of React Challenge, 2020')
   }
-  changeBackground = () => { }
+  changeBackground = () => {
+    const morningStyle = { backgroundColor: '#FFFFFF', color: '#000000', }
+    const eveningStyle = { backgroundColor: '#000000', color: '#FFFFFF', }
+    const styles = this.state.styles.backgroundColor === morningStyle.backgroundColor ? eveningStyle : morningStyle
+    this.setState({ styles })
+    console.log('this.state.styles: ', this.state.styles);
+  }
+
   render() {
     const data = {
       welcome: 'Welcome to 30 Days Of React',
@@ -360,8 +238,7 @@ class App extends React.Component {
     const user = { ...data.author, image: asabenehImage }
 
     return (
-      <div className='app'>
-        {this.state.backgroundColor}
+      <div className='app' style={this.state.styles}>
         <Header data={data} />
         <Main
           user={user}
