@@ -216,6 +216,8 @@ class App extends React.Component {
   changeBackground = () => {
     const morningStyle = { backgroundColor: '#FFFFFF', color: '#000000', }
     const eveningStyle = { backgroundColor: '#000000', color: '#FFFFFF', }
+    // const morningStyle = { backgroundColor: '#E4CA7C', color: '#4E3D36', }
+    // const eveningStyle = { backgroundColor: '#4E3D36', color: '#E4CA7C', }
     const styles = this.state.styles.backgroundColor === morningStyle.backgroundColor ? eveningStyle : morningStyle
     this.setState({ styles })
     console.log('this.state.styles: ', this.state.styles);
