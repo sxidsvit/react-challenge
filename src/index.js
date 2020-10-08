@@ -1,397 +1,158 @@
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-// // Header Component
-// // Functional component
-// const Header = () => (
-//   <header>
-//     <div className='header-wrapper'>
-//       <h1>Welcome to 30 Days Of React</h1>
-//       <h2>Getting Started React</h2>
-//       <h3>JavaScript Library</h3>
-//       <p>Asabeneh Yetayeh</p>
-//       <small>Oct 6, 2020</small>
-//     </div>
-//   </header>
-// )
-// const rootElement = document.getElementById('root')
-// ReactDOM.render(<Header />, rootElement)
-
-//  ************************************************************
-
+// index.js
 // import React from 'react'
 // import ReactDOM from 'react-dom'
 
-// // class based component
-// class Header extends React.Component {
-//   render() {
-//     return (
-//       <header>
-//         <div className='header-wrapper'>
-//           <h1>Welcome to 30 Days Of React</h1>
-//           <h2>Getting Started React</h2>
-//           <h3>JavaScript Library</h3>
-//           <p>Asabeneh Yetayeh</p>
-//           <small>Oct 7, 2020</small>
-//         </div>
-//       </header>
-//     )
-//   }
-// }
-
-// const rootElement = document.getElementById('root')
-// ReactDOM.render(<Header />, rootElement)
-
-//  ***************************************************************************
-
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-
-// // class base component
-// class Header extends React.Component {
-//   constructor(props) {
-//     super(props)
-//     // the code inside the constructor run before any other code
-//   }
-//   render() {
-//     return (
-//       <header>
-//         <div className='header-wrapper'>
-//           <h1>Welcome to 30 Days Of React</h1>
-//           <h2>Getting Started React</h2>
-//           <h3>JavaScript Library</h3>
-//           <p>Asabeneh Yetayeh</p>
-//           <small>Oct 7, 2020</small>
-//         </div>
-//       </header>
-//     )
-//   }
-// }
-
-// // TechList Component
-// // class base component
-// class TechList extends React.Component {
-//   constructor(props) {
-//     super(props)
-//   }
-//   render() {
-//     const techs = ['HTML', 'CSS', 'JavaScript']
-//     const techsFormatted = techs.map((tech) => <li key={tech}>{tech}</li>)
-//     return techsFormatted
-//   }
-// }
-
-// // Main Component
-// // Class Component
-// class Main extends React.Component {
-//   constructor(props) {
-//     super(props)
-//   }
-//   render() {
-//     return (
-//       <main>
-//         <div className='main-wrapper'>
-//           <p>Prerequisite to get started react.js:</p>
-//           <ul>
-//             <TechList />
-//           </ul>
-//         </div>
-//       </main>
-//     )
-//   }
-// }
-
-// // Footer Component
-// // Class component
-// class Footer extends React.Component {
-//   constructor(props) {
-//     super(props)
-//   }
-//   render() {
-//     return (
-//       <footer>
-//         <div className='footer-wrapper'>
-//           <p>Copyright 2020</p>
-//         </div>
-//       </footer>
-//     )
-//   }
-// }
-
-// // The App, or the parent or the container component
-// // Class Component
 // class App extends React.Component {
-//   constructor(props) {
-//     super(props)
+//   // declaring state
+//   state = {
+//     count: 0,
 //   }
 //   render() {
+//     // accessing the state value
+//     const count = this.state.count
 //     return (
-//       <div className='app'>
-//         <Header />
-//         <Main />
-//         <Footer />
+//       <div className='App'>
+//         <h1>{count} </h1>
 //       </div>
 //     )
 //   }
 // }
-
 // const rootElement = document.getElementById('root')
 // ReactDOM.render(<App />, rootElement)
 
-// ****************************************************************************
+//  ***********************************************************************************************
 
 // import React from 'react'
 // import ReactDOM from 'react-dom'
-
-// // class based component
-// class Header extends React.Component {
-
-//   render() {
-//     return (
-//       <header>
-//         <div className='header-wrapper'>
-//           <h1>{this.props.data.welcome}</h1>
-//           <h2>{this.props.data.title}</h2>
-//           <h3>
-//             {this.props.data.author.firstName} {this.props.data.author.lastName}
-//           </h3>
-//           <small>{this.props.data.date}</small>
-//         </div>
-//       </header>
-//     )
-//   }
-// }
-// const App = () => {
-//   const data = {
-//     welcome: 'Welcome to 30 Days Of React',
-//     title: 'Getting Started React',
-//     subtitle: 'JavaScript Library',
-//     author: {
-//       firstName: 'Asabeneh',
-//       lastName: 'Yetayeh',
-//     },
-//     date: 'Oct 7, 2020',
-//   }
-
-//   return (
-//     <div className='app'>
-//       <Header data={data} />
-//     </div>
-//   )
-// }
-
-// const rootElement = document.getElementById('root')
-// ReactDOM.render(<App />, rootElement)
-
-// ****************************************************************************
-
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-
-// // class based component
-// class Header extends React.Component {
-//   // constructor(props) {
-//   //   super(props)
-//   //   // the code inside the constructor run before any other code
-//   // }
-
-//   render() {
-//     console.log(this.props.data)
-//     const {
-//       welcome,
-//       title,
-//       subtitle,
-//       author: { firstName, lastName },
-//       date,
-//     } = this.props.data
-
-//     return (
-//       <header>
-//         <div className='header-wrapper'>
-//           <h1>{welcome}</h1>
-//           <h2>{title}</h2>
-//           <h3>{subtitle}</h3>
-//           <p>
-//             {firstName} {lastName}
-//           </p>
-//           <small>{date}</small>
-//         </div>
-//       </header>
-//     )
-//   }
-// }
-// const App = () => {
-//   const data = {
-//     welcome: 'Welcome to 30 Days Of React',
-//     title: 'Getting Started React',
-//     subtitle: 'JavaScript Library',
-//     author: {
-//       firstName: 'Asabeneh',
-//       lastName: 'Yetayeh',
-//     },
-//     date: 'Oct 6, 2020',
-//   }
-
-//   return (
-//     <div className='app'>
-//       <Header data={data} />
-//     </div>
-//   )
-// }
-
-// const rootElement = document.getElementById('root')
-// ReactDOM.render(<App />, rootElement)
-
-// ****************************************************************************
-
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-
-// // class based component
-// class Header extends React.Component {
-//   constructor(props) {
-//     super(props)
-//     // the code inside the constructor run before any other code
-//   }
-//   render() {
-//     console.log(this.props.data)
-//     const {
-//       welcome,
-//       title,
-//       subtitle,
-//       author: { firstName, lastName },
-//       date,
-//     } = this.props.data
-
-//     return (
-//       <header>
-//         <div className='header-wrapper'>
-//           <h1>{welcome}</h1>
-//           <h2>{title}</h2>
-//           <h3>{subtitle}</h3>
-//           <p>
-//             {firstName} {lastName}
-//           </p>
-//           <small>{date}</small>
-//         </div>
-//       </header>
-//     )
-//   }
-// }
-
-// // TechList Component
-// // class base component
-// class TechList extends React.Component {
-//   constructor(props) {
-//     super(props)
-//   }
-//   render() {
-//     const { techs } = this.props
-//     const techsFormatted = techs.map((tech) => <li key={tech}>{tech}</li>)
-//     return techsFormatted
-//   }
-// }
-
-// // Main Component
-// // Class Component
-// class Main extends React.Component {
-//   constructor(props) {
-//     super(props)
-//   }
-//   render() {
-//     return (
-//       <main>
-//         <div className='main-wrapper'>
-//           <p>Prerequisite to get started react.js:</p>
-//           <ul>
-//             <TechList techs={this.props.techs} />
-//           </ul>
-//         </div>
-//       </main>
-//     )
-//   }
-// }
-
-// // Footer Component
-// // Class component
-// class Footer extends React.Component {
-//   constructor(props) {
-//     super(props)
-//   }
-//   render() {
-//     return (
-//       <footer>
-//         <div className='footer-wrapper'>
-//           <p>Copyright {this.props.date.getFullYear()}</p>
-//         </div>
-//       </footer>
-//     )
-//   }
-// }
-
 // class App extends React.Component {
+//   // declaring state
+//   state = {
+//     count: 0,
+//   }
 //   render() {
-//     const data = {
-//       welcome: 'Welcome to 30 Days Of React',
-//       title: 'Getting Started React',
-//       subtitle: 'JavaScript Library',
-//       author: {
-//         firstName: 'Asabeneh',
-//         lastName: 'Yetayeh',
-//       },
-//       date: 'Oct 7, 2020',
-//     }
-//     const techs = ['HTML', 'CSS', 'JavaScript']
+//     // accessing the state value
+//     const count = this.state.count
+//     console.log('state: ', this.state);
 
 //     return (
-//       <div className='app'>
-//         <Header data={data} />
-//         <Main techs={techs} />
-//         <Footer date={new Date()} />
+//       <div className='App'>
+//         <h1>{count} </h1>
+//         <button onClick={() => this.setState({ count: this.state.count + 1 })}>
+//           Add One
+//         </button>
 //       </div>
 //     )
 //   }
 // }
-
 // const rootElement = document.getElementById('root')
 // ReactDOM.render(<App />, rootElement)
 
-
-// ************* Methods in Class based component ***************************
+//  ***********************************************************************************************
 
 // import React from 'react'
 // import ReactDOM from 'react-dom'
+// class App extends React.Component {
+//   // declaring state
+//   state = {
+//     count: 0,
+//   }
+//   // method which add one to the state
 
-// // class based component
-// class Header extends React.Component {
-//   greetPeople = () => {
-//     alert('Welcome to 30 Days Of React Challenge, 2020')
+//   addOne = () => {
+//     this.setState({ count: this.state.count + 1 })
+//   }
+
+//   // method which subtract one to the state
+//   minusOne = () => {
+//     this.setState({ count: this.state.count - 1 })
 //   }
 //   render() {
+//     // accessing the state value
+//     const count = this.state.count
 //     return (
-//       <header>
-//         <div className='header-wrapper'>
-//           <h1>Welcome to 30 Days Of React</h1>
-//           <h2>Getting Started React</h2>
-//           <h3>JavaScript Library</h3>
-//           <p>Asabeneh Yetayeh</p>
-//           <small>Oct 7, 2020</small>
-//           <button onClick={this.greetPeople}> Greet </button>
+//       <div className='App'>
+//         <h1>{count} </h1>
+
+//         <div>
+//           <button className='btn btn-add' onClick={this.addOne}>
+//             +1
+//           </button>{' '}
+//           <button className='btn btn-minus' onClick={this.minusOne}>
+//             -1
+//           </button>
 //         </div>
-//       </header>
+//       </div>
 //     )
 //   }
 // }
-
 // const rootElement = document.getElementById('root')
-// ReactDOM.render(<Header />, rootElement)
+// ReactDOM.render(<App />, rootElement)
 
-// ****************************************************************************
+//  ***********************************************************************************************
+// import React from 'react'
+// import ReactDOM from 'react-dom'
+// class App extends React.Component {
+//   // declaring state
+//   state = {
+//     image: 'https://www.smithsstationah.com/imagebank/eVetSites/Feline/01.jpg',
+//   }
+//   changeAnimal = () => {
+//     let dogURL =
+//       'https://static.onecms.io/wp-content/uploads/sites/12/2015/04/dogs-pembroke-welsh-corgi-400x400.jpg'
+//     let catURL =
+//       'https://www.smithsstationah.com/imagebank/eVetSites/Feline/01.jpg'
+//     let image = this.state.image === catURL ? dogURL : catURL
+//     this.setState({ image })
+//   }
+
+//   render() {
+//     // accessing the state value
+//     return (
+//       <div className='App'>
+//         <h1>30 Days Of React</h1>
+//         <div className='animal'>
+//           <img src={this.state.image} alt='animal' />
+//         </div>
+
+//         <button onClick={this.changeAnimal} className='btn btn-add'>
+//           Change
+//         </button>
+//       </div>
+//     )
+//   }
+// }
+// const rootElement = document.getElementById('root')
+// ReactDOM.render(<App />, rootElement)
+
+//  ***********************************************************************************************
 
 import React from 'react'
 import ReactDOM from 'react-dom'
 import asabenehImage from './images/asabeneh.jpg'
 
 // Fuction to show month date year
+
+const showDate = (time) => {
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ]
+
+  const month = months[time.getMonth()].slice(0, 3)
+  const year = time.getFullYear()
+  const date = time.getDate()
+  return ` ${month} ${date}, ${year}`
+}
 
 // User Card Component
 const UserCard = ({ user: { firstName, lastName, image } }) => (
@@ -440,7 +201,7 @@ class Header extends React.Component {
     } = this.props.data
 
     return (
-      <header>
+      <header style={this.props.styles}>
         <div className='header-wrapper'>
           <h1>{welcome}</h1>
           <h2>{title}</h2>
@@ -454,6 +215,16 @@ class Header extends React.Component {
     )
   }
 }
+
+const Count = ({ count, addOne, minusOne }) => (
+  <div>
+    <h1>{count} </h1>
+    <div>
+      <Button text='+1' onClick={addOne} style={buttonStyles} />
+      <Button text='-1' onClick={minusOne} style={buttonStyles} />
+    </div>
+  </div>
+)
 
 // TechList Component
 // class base component
@@ -475,10 +246,16 @@ class Main extends React.Component {
     super(props)
   }
   render() {
-
-    const { techs, user, greetPeople, handleTime } = this.props
-
-
+    const {
+      techs,
+      user,
+      greetPeople,
+      handleTime,
+      changeBackground,
+      count,
+      addOne,
+      minusOne,
+    } = this.props
     return (
       <main>
         <div className='main-wrapper'>
@@ -492,11 +269,13 @@ class Main extends React.Component {
             onClick={greetPeople}
             style={buttonStyles}
           />
+          <Button text='Show Time' onClick={handleTime} style={buttonStyles} />
           <Button
-            text='Show Time'
-            onClick={handleTime}
+            text='Change Background'
+            onClick={changeBackground}
             style={buttonStyles}
           />
+          <Count count={count} addOne={addOne} minusOne={minusOne} />
         </div>
       </main>
     )
@@ -521,6 +300,13 @@ class Footer extends React.Component {
 }
 
 class App extends React.Component {
+  state = {
+    count: 0,
+    styles: {
+      backgroundColor: '',
+      color: '',
+    },
+  }
   showDate = (time) => {
     const months = [
       'January',
@@ -542,12 +328,21 @@ class App extends React.Component {
     const date = time.getDate()
     return ` ${month} ${date}, ${year}`
   }
+  addOne = () => {
+    this.setState({ count: this.state.count + 1 })
+  }
+
+  // method which subtract one to the state
+  minusOne = () => {
+    this.setState({ count: this.state.count - 1 })
+  }
   handleTime = () => {
     alert(this.showDate(new Date()))
   }
   greetPeople = () => {
     alert('Welcome to 30 Days Of React Challenge, 2020')
   }
+  changeBackground = () => { }
   render() {
     const data = {
       welcome: 'Welcome to 30 Days Of React',
@@ -560,18 +355,23 @@ class App extends React.Component {
       date: 'Oct 7, 2020',
     }
     const techs = ['HTML', 'CSS', 'JavaScript']
-
+    const date = new Date()
     // copying the author from data object to user variable using spread operator
     const user = { ...data.author, image: asabenehImage }
 
     return (
       <div className='app'>
+        {this.state.backgroundColor}
         <Header data={data} />
         <Main
           user={user}
           techs={techs}
           handleTime={this.handleTime}
           greetPeople={this.greetPeople}
+          changeBackground={this.changeBackground}
+          addOne={this.addOne}
+          minusOne={this.minusOne}
+          count={this.state.count}
         />
         <Footer date={new Date()} />
       </div>
@@ -581,5 +381,3 @@ class App extends React.Component {
 
 const rootElement = document.getElementById('root')
 ReactDOM.render(<App />, rootElement)
-
-// ****************************************************************************
