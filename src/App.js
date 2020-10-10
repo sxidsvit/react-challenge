@@ -4,14 +4,11 @@ import Header from './components/Header'
 import Main from './components/Main'
 import Footer from './components/Footer'
 
-import ShowDate from './Utiles/ShowDate'
-import asabenehImage from './assets/images/asabeneh.jpg'
-import { data, techs } from './Data/data'
-
+import ShowDate from './components/ShowDate'
 
 // class based component
-
 class App extends React.Component {
+
   state = {
     count: 0,
     styles: {
@@ -29,7 +26,6 @@ class App extends React.Component {
     this.setState({ count: this.state.count - 1 })
   }
   handleTime = () => {
-    // alert(this.showDate(new Date()))
     alert(<ShowDate time={(new Date())} />)
   }
   greetPeople = () => {
@@ -45,8 +41,8 @@ class App extends React.Component {
 
   render() {
 
-    // copying the author from data object to user variable using spread operator
-    const user = { ...data.author, image: asabenehImage }
+    const { data, techs, photo } = this.props.user
+    const user = { ...data.author, image: photo }
 
     return (
       <div className='app' style={this.state.styles}>
