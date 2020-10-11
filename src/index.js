@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // ============== Conditional Rendering using If and Else statement =========
 
 // import React from 'react'
@@ -722,6 +723,12 @@ class App extends React.Component {
     )
   }
 }
+=======
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
+import user from './data/userInfo'
+>>>>>>> exercises-day-10
 
 const rootElement = document.getElementById('root')
-ReactDOM.render(<App />, rootElement)
+ReactDOM.render(<App user={user} />, rootElement)
