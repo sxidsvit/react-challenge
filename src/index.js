@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  NavLink,
+} from 'react-router-dom'
 
 // Home component
 const Home = (props) => <h1>Welcome Home</h1>
@@ -20,11 +25,26 @@ class App extends Component {
     return (
       <Router>
         <div className='App'>
+          <ul>
+            <li>
+              <NavLink to='/'>Home</NavLink>
+            </li>
+            <li>
+              <NavLink to='/about'>About</NavLink>
+            </li>
+            <li>
+              <NavLink to='/contact'>Contact</NavLink>
+            </li>
+            <li>
+              <NavLink to='/challenges'>Challenges</NavLink>
+            </li>
+          </ul>
+
           <Switch>
-            <Route exact path='/about' component={About} />
-            <Route exact path='/contact' component={Contact} />
-            <Route exact path='/challenges' component={Challenges} />
-            <Route exact path='/' component={Home} />
+            <Route path='/about' component={About} />
+            <Route path='/contact' component={Contact} />
+            <Route path='/challenges' component={Challenges} />
+            <Route path='/' component={Home} />
           </Switch>
         </div>
       </Router>
