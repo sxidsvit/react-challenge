@@ -19,31 +19,34 @@ const Challenges = (props) => (
     <h1>30 Days Of React Challenge</h1>
   </div>
 )
-
+const NotFound = (props) => <h1>The page your looking for not found</h1>
+const Navbar = () => (
+  <ul>
+    <li>
+      <NavLink to='/'>Home</NavLink>
+    </li>
+    <li>
+      <NavLink to='/about'>About</NavLink>
+    </li>
+    <li>
+      <NavLink to='/contact'>Contact</NavLink>
+    </li>
+    <li>
+      <NavLink to='/challenges'>Challenges</NavLink>
+    </li>
+  </ul>
+)
 class App extends Component {
   render() {
     return (
       <Router>
         <div className='App'>
-          <ul>
-            <li>
-              <NavLink to='/'>Home</NavLink>
-            </li>
-            <li>
-              <NavLink to='/about'>About</NavLink>
-            </li>
-            <li>
-              <NavLink to='/contact'>Contact</NavLink>
-            </li>
-            <li>
-              <NavLink to='/challenges'>Challenges</NavLink>
-            </li>
-          </ul>
-
+          <Navbar />
           <Switch>
+            <Route path='*' exact component={NotFound} />
             <Route path='/about' component={About} />
             <Route path='/contact' component={Contact} />
-            <Route path='/challenges' component={Challenges} />
+            <Route path='/challenge' component={Challenges} />
             <Route path='/' component={Home} />
           </Switch>
         </div>
