@@ -1,8 +1,18 @@
-
-import React from 'react'
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
-import user from './data/userInfo'
+import { BrowserRouter as Router } from 'react-router-dom'
+
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <div className='App'>
+          <h1>React Router DOM</h1>
+        </div>
+      </Router>
+    )
+  }
+}
 
 const rootElement = document.getElementById('root')
-ReactDOM.render(<App user={user} />, rootElement)
+ReactDOM.render(<App />, rootElement)
