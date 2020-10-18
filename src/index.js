@@ -27,23 +27,25 @@ const Square = ({ color, number }) => {
 }
 //  ================== component ==============================================
 
-const HexaColor = () => {
-
-  const hexaColor = () => {
-    let str = '0123456789abcdef'
-    let color = ''
-    for (let i = 0; i < 6; i++) {
-      let index = Math.floor(Math.random() * str.length)
-      color += str[index]
-    }
-    return '#' + color
+const hexaColor = () => {
+  let str = '0123456789abcdef'
+  let color = ''
+  for (let i = 0; i < 6; i++) {
+    let index = Math.floor(Math.random() * str.length)
+    color += str[index]
   }
+  return '#' + color
+}
+
+const HexaColor = ({ hexaColor }) => {
+
+  const bgcolor = hexaColor()
 
   const styles = {
     hexaColor: {
       width: "120px",
       height: "120px",
-      backgroundColor: hexaColor(),
+      backgroundColor: bgcolor,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -57,7 +59,7 @@ const HexaColor = () => {
 
   return (
     <div style={styles.hexaColor}>
-      { hexaColor()}
+      { bgcolor}
     </div>
   )
 }
@@ -135,7 +137,7 @@ const App = () => {
   //  For Hexadecimal Colors
   const hexadecimalList = []
   for (let number = 0; number < 32; number++) {
-    hexadecimalList.push(<HexaColor key={number + 1} />)
+    hexadecimalList.push(<HexaColor key={number + 1} hexaColor={hexaColor} />)
   }
 
   //  For World population
