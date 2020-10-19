@@ -18,7 +18,6 @@ const Cat = ({ options: { id, name, description } }) => {
 class App extends Component {
   state = {
     data: [],
-    // imperialAvaregeWeight: "",
     metricAvaregeWeight: "",
     lifeSpanAvarege: "",
     catsNumber: ""
