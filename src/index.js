@@ -36,7 +36,7 @@ class App extends Component {
       this.setState({
         data,
       })
-      const [imperialAvaregeWeight, metricAvaregeWeight, lifeSpanAvarege, catsNumder] = this.averageData()
+      const [metricAvaregeWeight, lifeSpanAvarege, catsNumder] = this.averageData()
       this.setState({
         // imperialAvaregeWeight,
         metricAvaregeWeight,
