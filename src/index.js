@@ -1,94 +1,91 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
-const Button = ({ onClick, text, style }) => {
+const Input = (props) => {
+  console.log('props', props)
+  const { style, options: { type, hendlers, placeholder, label, id } } = props
   return (
-    <button onClick={onClick} style={style}>
-      {text}
-    </button>
+    <div className="form-group  m-4 w-25">
+      <label htmlFor={id} className="text-center">{label}</label>
+      <input className="form-control" id={id}
+        type={type}
+        style={style}
+        {...hendlers}
+        placeholder={placeholder}
+        aria-label="Username" aria-describedby="basic-addon1" />
+    </div>
   )
 }
 
-const buttonWithSuperPower = (CompParam, name = 'default') => {
-  const colors = [
-    {
-      name: 'default',
-      backgroundColor: '#e7e7e7',
-      color: '#000000',
-    },
-    {
-      name: 'react',
-      backgroundColor: '#61dbfb',
-      color: '#ffffff',
-    },
-    {
-      name: 'success',
-      backgroundColor: '#4CAF50',
-      color: '#ffffff',
-    },
-    {
-      name: 'info',
-      backgroundColor: '#2196F3',
-      color: '#ffffff',
-    },
-    {
-      name: 'warning',
-      backgroundColor: '#ff9800',
-      color: '#ffffff',
-    },
-    {
-      name: 'danger',
-      backgroundColor: '#f44336',
-      color: '#ffffff',
-    },
-  ]
-  const { backgroundColor, color } = colors.find((c) => c.name === name)
+const InputWithSuperPower = (CompParam, options = {}) => {
+  console.log('InputWithSuperPower - options: ', options);
 
-  const buttonStyles = {
-    backgroundColor,
-    padding: '10px 45px',
+  const inputStyles = {
+    backgroundColor: '#e7e7e7',
+    padding: '20px 35px',
     border: 'none',
     borderRadius: 3,
     margin: 3,
     cursor: 'pointer',
     fontSize: '1.25rem',
-    color,
+    color: 'green'
   }
+
   return (props) => {
-    return <CompParam {...props} style={buttonStyles} />
+    return <CompParam
+      style={{ ...inputStyles, ...options.style }}
+      options={options} />
   }
 }
 
-const NewButton = buttonWithSuperPower(Button)
-const ReactButton = buttonWithSuperPower(Button, 'react')
-const InfoButton = buttonWithSuperPower(Button, 'info')
-const SuccessButton = buttonWithSuperPower(Button, 'success')
-const WarningButton = buttonWithSuperPower(Button, 'warning')
-const DangerButton = buttonWithSuperPower(Button, 'danger')
+const TextInput = InputWithSuperPower(Input,
+  {
+    type: 'text',
+    style: { borderRadius: '20px', color: 'green', border: '2px solid green' },
+    hendlers: {
+      onClick: () => console.log('Text. You clicked inside mу ...'),
+      onBlur: () => console.log('Text. Fockus is lost ...')
+    },
+    placeholder: 'First name',
+    label: 'Your name',
+    id: 1
+  })
+
+const EmailInput = InputWithSuperPower(Input,
+
+  {
+    type: 'email',
+    style: { borderRadius: '10px', color: 'blue', border: '2px solid blue' },
+    hendlers: {
+      onClick: () => console.log('Email. You clicked inside mу ...'),
+    },
+    placeholder: 'email',
+    label: 'Your email',
+    id: 2
+  })
+
+const PasswordInput = InputWithSuperPower(Input,
+
+  {
+    type: 'password',
+    style: { borderRadius: '10px', color: 'orange', border: '2px solid orange' },
+    hendlers: {
+      onClick: () => console.log('Password. You clicked inside mу ...'),
+    },
+    placeholder: 'password',
+    label: 'Your password',
+    id: 3
+  })
+
 
 class App extends Component {
   render() {
+
     return (
       <div className='App'>
-        <Button text='No Style' onClick={() => alert('I am not styled yet')} />
-        <NewButton
-          text='Styled Button'
-          onClick={() => alert('I am the default style')}
-        />
-        <ReactButton text='React' onClick={() => alert('I have react color')} />
-        <InfoButton
-          text='Info'
-          onClick={() => alert('I am styled with info color')}
-        />
-        <SuccessButton text='Success' onClick={() => alert('I am successful')} />
-        <WarningButton
-          text='Warning'
-          onClick={() => alert('I warn you many times')}
-        />
-        <DangerButton
-          text='Danger'
-          onClick={() => alert('Oh no, you can not restore it')}
-        />
+        <TextInput />
+        <EmailInput />
+        <PasswordInput />
       </div>
     )
   }
