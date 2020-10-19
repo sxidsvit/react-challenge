@@ -47,17 +47,19 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.fetchCountryData()
+  }
+  fetchCountryData = async () => {
     const url = 'https://restcountries.eu/rest/v2/all'
-    axios
-      .get(url)
-      .then((response) => {
-        this.setState({
-          data: response.data,
-        })
+    try {
+      const response = await axios.get(url)
+      const data = await response.data
+      this.setState({
+        data,
       })
-      .catch((error) => {
-        console.log(error)
-      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   render() {
