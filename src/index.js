@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import axios from 'axios'
 
 const Country = ({
   country: { name, capital, flag, languages, population, currency },
@@ -10,8 +11,9 @@ const Country = ({
         <span>Capital: </span>
         {capital}
       </>
-    ) : ''
-
+    ) : (
+        ''
+      )
   const formatLanguage = languages.length > 1 ? `Languages` : `Language`
   console.log(languages)
   return (
@@ -45,26 +47,23 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.fetchCountryData()
-  }
-
-  fetchCountryData = async () => {
     const url = 'https://restcountries.eu/rest/v2/all'
-    try {
-      const response = await fetch(url)
-      const data = await response.json()
-      this.setState({
-        data,
+    axios
+      .get(url)
+      .then((response) => {
+        this.setState({
+          data: response.data,
+        })
       })
-    } catch (error) {
-      console.log(error)
-    }
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   render() {
     return (
       <div className='App'>
-        <h1>Fetching API using Fetch</h1>
+        <h1>React Component Life Cycle</h1>
         <h1>Calling API</h1>
         <div>
           <p>There are {this.state.data.length} countries in the api</p>
