@@ -19,8 +19,9 @@ const Country = ({
         <span>Capital: </span>
         {capital}
       </>
-    ) : ''
-
+    ) : (
+        ''
+      )
   const formatLanguage = languages.length > 1 ? `Languages` : `Language`
   console.log(languages)
   return (
@@ -54,26 +55,22 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.fetchCountryData()
+  }
+
+  fetchCountryData = async () => {
     const url = 'https://restcountries.eu/rest/v2/all'
-    fetch(url)
-      .then((response) => {
-        return response.json()
-      })
-      .then((data) => {
-        console.log(data)
-        this.setState({
-          data,
-        })
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    const response = await fetch(url)
+    const data = await response.json()
+    this.setState({
+      data,
+    })
   }
 
   render() {
     return (
       <div className='App'>
-        <h1>React Component Life Cycle</h1>
+        <h1>Fetching API using Fetch</h1>
         <h1>Calling API</h1>
         <div>
           <p>There are {this.state.data.length} countries in the api</p>
