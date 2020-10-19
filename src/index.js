@@ -1,12 +1,3 @@
-
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-// import App from './App'
-// import user from './data/userInfo'
-
-// const rootElement = document.getElementById('root')
-// ReactDOM.render(<App user={user} />, rootElement)
-
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
@@ -19,9 +10,8 @@ const Country = ({
         <span>Capital: </span>
         {capital}
       </>
-    ) : (
-        ''
-      )
+    ) : ''
+
   const formatLanguage = languages.length > 1 ? `Languages` : `Language`
   console.log(languages)
   return (
@@ -60,11 +50,15 @@ class App extends Component {
 
   fetchCountryData = async () => {
     const url = 'https://restcountries.eu/rest/v2/all'
-    const response = await fetch(url)
-    const data = await response.json()
-    this.setState({
-      data,
-    })
+    try {
+      const response = await fetch(url)
+      const data = await response.json()
+      this.setState({
+        data,
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   render() {
