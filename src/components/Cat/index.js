@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { styles } from './style'
+import './style.css'
 
 class Cat extends Component {
 
@@ -34,7 +35,7 @@ class Cat extends Component {
     return (
       <div style={styles.catCard}>
         <div style={styles.catCardImage}>
-          <img style={styles.catCardImageImg} src={this.state.imgUrl} alt={name} loadin="lazy"></img>
+          <img style={styles.catCardImageImg} src={this.state.imgUrl} alt={name} loadin="lazy" className="imgScale"></img>
         </div>
         <div style={styles.catCardBody} >
           <h1 style={styles.catName}>{name}</h1>

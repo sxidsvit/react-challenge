@@ -65,8 +65,9 @@ class App extends Component {
   render() {
 
     const styles = {
-      dancingFont: {
+      MerriweatherFont: {
         fontFamily: "'Merriweather', serif",
+        fontSize: "2.875rem",
         textShadow: "4px 3px 0 #fff, 9px 8px 0 rgba(0, 0, 0, .15)"
       },
       p: {
@@ -85,10 +86,10 @@ class App extends Component {
     return (
       <div className='App' >
         <div className="jumbotron text-center" style={{ backgroundColor: "#D9D2F6" }}>
-          <h1 className=" display-4" style={{ fontWeight: "700" }}>30 days Of React</h1>
+          <h1 className=" display-4" style={{ fontWeight: "700", fontSize: "3rem" }}>30 days Of React</h1>
           <div style={{ margin: "1.5rem auto" }}><img src={blackCat} alt="black cat" /></div>
-          <h2 style={{ ...styles.dancingFont, fontWeight: "600" }}>Cats Paradise</h2>
-          <h3 style={styles.dancingFont}> There are {this.state.catsNumder} cat breeds</h3>
+          <h2 style={{ ...styles.MerriweatherFont, fontWeight: "600" }}>Cats Paradise</h2>
+          <h3 style={{ ...styles.p, fontSize: "1.4rem", lineHeight: "35px" }}> There are {this.state.catsNumder} cat breeds</h3>
           <p className="d-flex d-wrap justify-content-center align-items-center" style={styles.p} >On average a cat can weights about&nbsp;<span style={styles.span}>{this.state.metricAvaregeWeight}</span>&nbsp;Kg  and lives&nbsp;<span style={styles.span}>{this.state.lifeSpanAvarege}</span>&nbsp;years</p>
 
         </div>
