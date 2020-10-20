@@ -8,6 +8,7 @@ import Button from './components/Button/Button'
 class App extends Component {
   state = {
     data: [],
+    filteredData: [],
     metricAvaregeWeight: "",
     lifeSpanAvarege: "",
     catsNumber: ""
@@ -24,6 +25,7 @@ class App extends Component {
       const data = await response.data
       this.setState({
         data,
+        filteredData: data
       })
       const [metricAvaregeWeight, lifeSpanAvarege, catsNumder] = this.averageData()
       this.setState({
@@ -76,6 +78,19 @@ class App extends Component {
   }
 
 
+  filterData(origin) {
+    const filteredData = origin
+      ? this.state.data.filter(item => {
+        return item.origin === origin
+      }) : this.state.data
+    this.setState({ filteredData })
+    console.log('filteredData: ', filteredData, origin);
+  }
+
+  clickButtonHendler(origin) {
+    return this.filterData.call(this, origin)
+  }
+
   render() {
 
     const groupedData = this.groupBy(this.state.data, 'origin')
@@ -122,15 +137,20 @@ class App extends Component {
               return <Button
                 origin={origin}
                 itemsNumber={itemsNumber}
+                clickButton={this.clickButtonHendler.bind(this)}
                 key={inx + 1} />
             })
           }
-          {<Button origin="All" itemsNumber={this.state.data.length} />}
+          {<Button
+            origin={''}
+            itemsNumber={this.state.data.length}
+            clickButton={this.clickButtonHendler.bind(this)}
+          />}
         </div>
 
 
         <div className=" d-flex flex-wrap justify-content-around align-items-top">
-          {this.state.data.map((cat, inx) => (
+          {this.state.filteredData.map((cat, inx) => (
             <Cat options={cat} key={inx} />
           ))}
         </div>

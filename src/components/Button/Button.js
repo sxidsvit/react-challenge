@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export class Button extends Component {
 
   render() {
-    const { origin, itemsNumber } = this.props
+    const { origin, itemsNumber, clickButton } = this.props
 
     const styles = {
       button: {
@@ -23,8 +23,9 @@ export class Button extends Component {
         <button
           type="button"
           className="btn btn-light"
-          style={styles.button}>
-          {origin}&nbsp;({itemsNumber})
+          style={styles.button}
+          onClick={() => clickButton(origin)}>
+          {origin ? origin : 'All'}&nbsp;({itemsNumber})
         </button>
       </div>
     )
