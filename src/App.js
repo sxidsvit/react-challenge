@@ -1,64 +1,102 @@
-import React from 'react'
+/* eslint-disable space-before-function-paren */
+import React, { Component } from 'react'
+import axios from 'axios'
+import Cat from './components/Cat/index'
+import blackCat from './assets/images/favicon.e3a42d29.ico.ico'
 
-import Header from './components/Header'
-import Main from './components/Main'
-import Footer from './components/Footer'
-
-import ShowDate from './components/ShowDate'
-
-// class based component
-class App extends React.Component {
-
+class App extends Component {
   state = {
-    count: 0,
-    styles: {
-      backgroundColor: '#FFFFFF',
-      color: '#000000',
-    },
+    data: [],
+    metricAvaregeWeight: "",
+    lifeSpanAvarege: "",
+    catsNumber: ""
   }
 
-  addOne = () => {
-    this.setState({ count: this.state.count + 1 })
+  componentDidMount() {
+    const url = 'https://api.thecatapi.com/v1/breeds'
+    this.fetchCatsData(url)
   }
 
-  // method which subtract one to the state
-  minusOne = () => {
-    this.setState({ count: this.state.count - 1 })
+  fetchCatsData = async (url) => {
+    try {
+      const response = await axios.get(url)
+      const data = await response.data
+      this.setState({
+        data,
+      })
+      const [metricAvaregeWeight, lifeSpanAvarege, catsNumder] = this.averageData()
+      this.setState({
+        metricAvaregeWeight,
+        lifeSpanAvarege,
+        catsNumder
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
-  handleTime = () => {
-    alert(<ShowDate time={(new Date())} />)
-  }
-  greetPeople = () => {
-    alert('Welcome to 30 Days Of React Challenge, 2020')
-  }
-  changeBackground = () => {
-    const morningStyle = { backgroundColor: '#FFFFFF', color: '#000000', }
-    const eveningStyle = { backgroundColor: '#000000', color: '#FFFFFF', }
-    const styles = this.state.styles.backgroundColor === morningStyle.backgroundColor ? eveningStyle : morningStyle
-    this.setState({ styles })
-    console.log('this.state.styles: ', this.state.styles);
+
+  averageData() {
+
+    const catsNumder = this.state.data.length
+
+    const rez1 = this.state.data.map(item => {
+      const metricWeight = item.weight.metric.split('-')
+      let weight = metricWeight.map(item => item.trim())
+      const metricAvaregeWeightForCurrentCat = weight.reduce((acum, carrent) => acum + parseInt(carrent), 0) / weight.length
+      return metricAvaregeWeightForCurrentCat
+    })
+
+    const rez2 = this.state.data.map(item => {
+      const lifeSpan = item.life_span.split('-')
+      let life = lifeSpan.map(item => item.trim())
+      const lifeSpanAvaregeForCurrentCat = life.reduce((acum, carrent) => acum + parseInt(carrent), 0) / life.length
+      return lifeSpanAvaregeForCurrentCat
+    })
+
+    let metricAvaregeWeight = Math.ceil(rez1.reduce((acum, carrent) => acum + carrent, 0) * 100 / catsNumder) / 100
+
+    let lifeSpanAvarege = Math.ceil(rez2.reduce((acum, carrent) => acum + carrent, 0) * 100 / catsNumder) / 100
+
+
+
+    return [metricAvaregeWeight, lifeSpanAvarege, catsNumder]
   }
 
   render() {
 
-    const { data, techs, photo } = this.props.user
-    const user = { ...data.author, image: photo }
+    const styles = {
+      dancingFont: {
+        fontFamily: "'Merriweather', serif",
+        textShadow: "4px 3px 0 #fff, 9px 8px 0 rgba(0, 0, 0, .15)"
+      },
+      p: {
+        fontFamily: "'Merriweather', serif",
+        fontSize: "1.2rem",
+      },
+
+      span: {
+        display: "inline-block",
+        color: "#665656",
+        fontWeight: "bold",
+        fontSize: "1.625rem",
+      }
+    }
 
     return (
-      <div className='app' style={this.state.styles}>
-        <Header data={data} style={this.state.styles} />
-        <Main
-          style={this.state.styles}
-          user={user}
-          techs={techs}
-          handleTime={this.handleTime}
-          greetPeople={this.greetPeople}
-          changeBackground={this.changeBackground}
-          addOne={this.addOne}
-          minusOne={this.minusOne}
-          count={this.state.count}
-        />
-        <Footer date={new Date()} style={this.state.styles} />
+      <div className='App' >
+        <div className="jumbotron text-center" style={{ backgroundColor: "#D9D2F6" }}>
+          <h1 className=" display-4" style={{ fontWeight: "700" }}>30 days Of React</h1>
+          <div style={{ margin: "1.5rem auto" }}><img src={blackCat} alt="black cat" /></div>
+          <h2 style={{ ...styles.dancingFont, fontWeight: "600" }}>Cats Paradise</h2>
+          <h3 style={styles.dancingFont}> There are {this.state.catsNumder} cat breeds</h3>
+          <p className="d-flex d-wrap justify-content-center align-items-center" style={styles.p} >On average a cat can weights about&nbsp;<span style={styles.span}>{this.state.metricAvaregeWeight}</span>&nbsp;Kg  and lives&nbsp;<span style={styles.span}>{this.state.lifeSpanAvarege}</span>&nbsp;years</p>
+
+        </div>
+        <div className=" d-flex flex-wrap justify-content-around align-items-top">
+          {this.state.data.map((cat, inx) => (
+            <Cat options={cat} key={inx} />
+          ))}
+        </div>
       </div>
     )
   }
