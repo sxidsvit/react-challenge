@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import Cat from './components/Cat/index'
 import blackCat from './assets/images/favicon.e3a42d29.ico.ico'
+import Button from './components/Button/Button'
 
 class App extends Component {
   state = {
@@ -62,7 +63,27 @@ class App extends Component {
     return [metricAvaregeWeight, lifeSpanAvarege, catsNumder]
   }
 
+
+  //  Groupi
+
+  groupBy(initialData, param) {
+    const mySet = new Set(initialData.map((item) => item[param]))
+    const groupObj = {}
+    for (let value of mySet) {
+      groupObj[value] = initialData.filter(item => item[param] === value)
+    }
+    return groupObj
+  }
+
+
   render() {
+
+    const groupedData = this.groupBy(this.state.data, 'origin')
+
+    const origins = Object.keys(groupedData).map((origin, inx) => {
+      const itemsNumber = groupedData[origin].length
+      return [origin, itemsNumber]
+    })
 
     const styles = {
       MerriweatherFont: {
@@ -91,8 +112,23 @@ class App extends Component {
           <h2 style={{ ...styles.MerriweatherFont, fontWeight: "600" }}>Cats Paradise</h2>
           <h3 style={{ ...styles.p, fontSize: "1.4rem", lineHeight: "35px" }}> There are {this.state.catsNumder} cat breeds</h3>
           <p className="d-flex d-wrap justify-content-center align-items-center" style={styles.p} >On average a cat can weights about&nbsp;<span style={styles.span}>{this.state.metricAvaregeWeight}</span>&nbsp;Kg  and lives&nbsp;<span style={styles.span}>{this.state.lifeSpanAvarege}</span>&nbsp;years</p>
-
         </div>
+
+
+        <div className="d-flex flex-wrap justify-content-center align-items-center" style={{ width: "65%", margin: " 20px auto" }}>
+          {
+            origins.map((item, inx) => {
+              const [origin, itemsNumber] = item
+              return <Button
+                origin={origin}
+                itemsNumber={itemsNumber}
+                key={inx + 1} />
+            })
+          }
+          {<Button origin="All" itemsNumber={this.state.data.length} />}
+        </div>
+
+
         <div className=" d-flex flex-wrap justify-content-around align-items-top">
           {this.state.data.map((cat, inx) => (
             <Cat options={cat} key={inx} />
