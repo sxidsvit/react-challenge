@@ -4,9 +4,11 @@ import axios from 'axios'
 import Cat from './components/Cat/index'
 import blackCat from './assets/images/favicon.e3a42d29.ico.ico'
 import Button from './components/Button/Button'
+import Loader from './components/Loader/Loader'
 
 class App extends Component {
   state = {
+    loading: true,
     data: [],
     filteredData: [],
     metricAvaregeWeight: "",
@@ -25,7 +27,8 @@ class App extends Component {
       const data = await response.data
       this.setState({
         data,
-        filteredData: data
+        filteredData: data,
+        loading: false
       })
       const [metricAvaregeWeight, lifeSpanAvarege, catsNumder] = this.averageData()
       this.setState({
@@ -95,10 +98,11 @@ class App extends Component {
 
     const groupedData = this.groupBy(this.state.data, 'origin')
 
-    const origins = Object.keys(groupedData).map((origin, inx) => {
-      const itemsNumber = groupedData[origin].length
-      return [origin, itemsNumber]
-    })
+    const origins = Object.keys(groupedData)
+      .map(origin => {
+        const itemsNumber = groupedData[origin].length
+        return [origin, itemsNumber]
+      })
 
     const styles = {
       MerriweatherFont: {
@@ -119,41 +123,54 @@ class App extends Component {
       }
     }
 
+    // Jumbotron with information about cats 
+    const jumbotron = (
+      <div className="jumbotron text-center" style={{ backgroundColor: "#D9D2F6" }}>
+        <h1 className=" display-4" style={{ fontWeight: "700", fontSize: "3rem" }}>30 days Of React</h1>
+        <div style={{ margin: "1.5rem auto" }}><img src={blackCat} alt="black cat" /></div>
+        <h2 style={{ ...styles.MerriweatherFont, fontWeight: "600" }}>Cats Paradise</h2>
+        <h3 style={{ ...styles.p, fontSize: "1.4rem", lineHeight: "35px" }}> There are {this.state.catsNumder} cat breeds</h3>
+        <p className="d-flex d-wrap justify-content-center align-items-center" style={styles.p} >On average a cat can weights about&nbsp;<span style={styles.span}>{this.state.metricAvaregeWeight}</span>&nbsp;Kg  and lives&nbsp;<span style={styles.span}>{this.state.lifeSpanAvarege}</span>&nbsp;years</p>
+      </div>
+    )
+
+    // Buttons for filtering cats by country
+    const filteringButtons = (
+      <div className="d-flex flex-wrap justify-content-center align-items-center" style={{ width: "65%", margin: " 20px auto" }}>
+        {
+          origins.map((item, inx) => {
+            const [origin, itemsNumber] = item
+            return <Button
+              origin={origin}
+              itemsNumber={itemsNumber}
+              clickButton={this.clickButtonHendler.bind(this)}
+              key={inx + 1} />
+          })
+        }
+        {<Button
+          origin={''}
+          itemsNumber={this.state.data.length}
+          clickButton={this.clickButtonHendler.bind(this)}
+        />}
+      </div>
+    )
+
+    // Cards with cats' descriptions 
+    const catsDescriptions = (
+      <div className=" d-flex flex-wrap justify-content-around align-items-top">
+        {this.state.filteredData.map((cat, inx) => (
+          <Cat options={cat} key={inx} />
+        ))}
+      </div>
+    )
+
     return (
       <div className='App' >
-        <div className="jumbotron text-center" style={{ backgroundColor: "#D9D2F6" }}>
-          <h1 className=" display-4" style={{ fontWeight: "700", fontSize: "3rem" }}>30 days Of React</h1>
-          <div style={{ margin: "1.5rem auto" }}><img src={blackCat} alt="black cat" /></div>
-          <h2 style={{ ...styles.MerriweatherFont, fontWeight: "600" }}>Cats Paradise</h2>
-          <h3 style={{ ...styles.p, fontSize: "1.4rem", lineHeight: "35px" }}> There are {this.state.catsNumder} cat breeds</h3>
-          <p className="d-flex d-wrap justify-content-center align-items-center" style={styles.p} >On average a cat can weights about&nbsp;<span style={styles.span}>{this.state.metricAvaregeWeight}</span>&nbsp;Kg  and lives&nbsp;<span style={styles.span}>{this.state.lifeSpanAvarege}</span>&nbsp;years</p>
-        </div>
-
-
-        <div className="d-flex flex-wrap justify-content-center align-items-center" style={{ width: "65%", margin: " 20px auto" }}>
-          {
-            origins.map((item, inx) => {
-              const [origin, itemsNumber] = item
-              return <Button
-                origin={origin}
-                itemsNumber={itemsNumber}
-                clickButton={this.clickButtonHendler.bind(this)}
-                key={inx + 1} />
-            })
-          }
-          {<Button
-            origin={''}
-            itemsNumber={this.state.data.length}
-            clickButton={this.clickButtonHendler.bind(this)}
-          />}
-        </div>
-
-
-        <div className=" d-flex flex-wrap justify-content-around align-items-top">
-          {this.state.filteredData.map((cat, inx) => (
-            <Cat options={cat} key={inx} />
-          ))}
-        </div>
+        {jumbotron}
+        {this.state.loading
+          ? <Loader />
+          : [filteringButtons, catsDescriptions]
+        }
       </div>
     )
   }
