@@ -17,16 +17,20 @@ class Cat extends Component {
     try {
       let response = await axios.get(url)
       const imgUrl = await response.data[0].url
-      this.setState({
-        imgUrl,
-        loading: false
-      })
+      if (this.state.isMounted) {
+        this.setState({
+          imgUrl,
+          loading: false
+        })
+      }
+
     } catch (error) {
       console.log(error)
     }
   }
 
   componentDidMount() {
+
     this.setState({ isMounted: true })
     const url = `https://api.thecatapi.com/v1/images/search?breed_id=${this.props.options.id}`
     this.fetchCatImg(url)

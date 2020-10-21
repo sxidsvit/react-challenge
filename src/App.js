@@ -20,12 +20,6 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
-    this.setState({ isMounted: true })
-    const url = 'https://api.thecatapi.com/v1/breeds'
-    this.fetchCatsData(url)
-  }
-
   fetchCatsData = async (url) => {
     try {
       const response = await axios.get(url)
@@ -46,6 +40,12 @@ class App extends Component {
     } catch (error) {
       console.log(error)
     }
+  }
+
+  componentDidMount() {
+    this.setState({ isMounted: true })
+    const url = 'https://api.thecatapi.com/v1/breeds'
+    this.fetchCatsData(url)
   }
 
   componentWillUnmount() {
@@ -171,10 +171,15 @@ class App extends Component {
 
     // Cards with cats' descriptions 
     const catsDescriptions = (
-      <div className=" d-flex flex-wrap justify-content-around align-items-top" key={Math.random()}>
-        {this.state.filteredData.map((cat, inx) => (
-          <Cat options={cat} key={inx} />
-        ))}
+      <div
+        className=" d-flex flex-wrap justify-content-around align-items-top"
+        key={Math.random()}
+      >
+        {
+          this.state.filteredData.map((cat, inx) => (
+            <Cat options={cat} key={inx} />
+          ))
+        }
       </div>
     )
 
