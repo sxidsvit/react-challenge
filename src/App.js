@@ -7,16 +7,21 @@ import Button from './components/Button/Button'
 import Loader from './components/Loader/Loader'
 
 class App extends Component {
-  state = {
-    loading: true,
-    data: [],
-    filteredData: [],
-    metricAvaregeWeight: "",
-    lifeSpanAvarege: "",
-    catsNumber: ""
+  constructor() {
+    super()
+    this.state = {
+      loading: true,
+      data: [],
+      filteredData: [],
+      metricAvaregeWeight: "",
+      lifeSpanAvarege: "",
+      catsNumber: "",
+      isMounted: false
+    }
   }
 
   componentDidMount() {
+    this.setState({ isMounted: true })
     const url = 'https://api.thecatapi.com/v1/breeds'
     this.fetchCatsData(url)
   }
@@ -25,20 +30,26 @@ class App extends Component {
     try {
       const response = await axios.get(url)
       const data = await response.data
-      this.setState({
-        data,
-        filteredData: data,
-        loading: false
-      })
+      if (this.state.isMounted)
+        this.setState({
+          data,
+          filteredData: data,
+          loading: false
+        })
       const [metricAvaregeWeight, lifeSpanAvarege, catsNumder] = this.averageData()
-      this.setState({
-        metricAvaregeWeight,
-        lifeSpanAvarege,
-        catsNumder
-      })
+      if (this.state.isMounted)
+        this.setState({
+          metricAvaregeWeight,
+          lifeSpanAvarege,
+          catsNumder
+        })
     } catch (error) {
       console.log(error)
     }
+  }
+
+  componentWillUnmount() {
+    this.setState({ isMounted: false })
   }
 
   averageData() {
@@ -87,7 +98,6 @@ class App extends Component {
         return item.origin === origin
       }) : this.state.data
     this.setState({ filteredData })
-    console.log('filteredData: ', filteredData, origin);
   }
 
   clickButtonHendler(origin) {
@@ -136,7 +146,10 @@ class App extends Component {
 
     // Buttons for filtering cats by country
     const filteringButtons = (
-      <div className="d-flex flex-wrap justify-content-center align-items-center" style={{ width: "65%", margin: " 20px auto" }}>
+      <div className="d-flex flex-wrap justify-content-center align-items-center"
+        style={{ width: "65%", margin: " 20px auto" }}
+        key={Date.now()}
+      >
         {
           origins.map((item, inx) => {
             const [origin, itemsNumber] = item
@@ -151,13 +164,14 @@ class App extends Component {
           origin={''}
           itemsNumber={this.state.data.length}
           clickButton={this.clickButtonHendler.bind(this)}
+          key={Date.now()}
         />}
       </div>
     )
 
     // Cards with cats' descriptions 
     const catsDescriptions = (
-      <div className=" d-flex flex-wrap justify-content-around align-items-top">
+      <div className=" d-flex flex-wrap justify-content-around align-items-top" key={Math.random()}>
         {this.state.filteredData.map((cat, inx) => (
           <Cat options={cat} key={inx} />
         ))}

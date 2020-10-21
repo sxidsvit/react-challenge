@@ -3,11 +3,14 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { styles } from './style'
 import './style.css'
+import Loader from '../Loader/Loader'
 
 class Cat extends Component {
 
   state = {
-    imgUrl: ""
+    imgUrl: "",
+    isMounted: false,
+    loading: true
   }
 
   fetchCatImg = async (url) => {
@@ -15,7 +18,8 @@ class Cat extends Component {
       let response = await axios.get(url)
       const imgUrl = await response.data[0].url
       this.setState({
-        imgUrl
+        imgUrl,
+        loading: false
       })
     } catch (error) {
       console.log(error)
@@ -23,8 +27,13 @@ class Cat extends Component {
   }
 
   componentDidMount() {
+    this.setState({ isMounted: true })
     const url = `https://api.thecatapi.com/v1/images/search?breed_id=${this.props.options.id}`
     this.fetchCatImg(url)
+  }
+
+  componentWillUnmount() {
+    this.setState({ isMounted: false })
   }
 
 
@@ -32,8 +41,10 @@ class Cat extends Component {
 
     const { options: { name, origin, temperament, life_span, weight: { metric }, description } } = this.props
 
-    return (
-      <div style={styles.catCard}>
+
+    // Card with cats'' descriptions 
+    const catDescription = (
+      <>
         <div style={styles.catCardImage}>
           <img style={styles.catCardImageImg} src={this.state.imgUrl} alt={name} loadin="lazy" className="imgScale"></img>
         </div>
@@ -48,6 +59,16 @@ class Cat extends Component {
             <p style={{ ...styles.p, margineTop: "10px" }}>{description}</p>
           </div>
         </div>
+      </>
+    )
+
+    return (
+      <div style={styles.catCard}>
+        {
+          this.state.loading
+            ? <Loader />
+            : catDescription
+        }
       </div>
 
     )
