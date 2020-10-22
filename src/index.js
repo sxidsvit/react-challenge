@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
+import isEmail from 'validator/lib/isEmail'
+import isLength from 'validator/lib/isLength'
+import isEmpty from 'validator/lib/isEmpty'
 
 const styles = {
   app: {
@@ -95,7 +98,6 @@ const App = () => {
       })
     } else if (type === 'file') {
       setFormData({ ...formData, [name]: e.target.files[0] })
-      console.log('e.target.files.length: ', e.target.files.length);
     } else {
       setFormData({ ...formData, [name]: value })
     }
@@ -109,48 +111,43 @@ const App = () => {
   const validate = () => {
     const errors = {}
     if (
-      (touched.firstName && firstName.length < 3) ||
-      (touched.firstName && firstName.length > 12)
+      (touched.firstName && !isLength(firstName, { min: 3, max: 15 }))
     ) {
       errors.firstName = 'First name must be between 2 and 12'
     }
 
     if (
-      (touched.lastName && lastName.length < 3) ||
-      (touched.lastName && lastName.length > 15)
+      (touched.lastName && !isLength(lastName, { min: 3, max: 15 }))
     ) {
       errors.lastName = 'Last name must be between 2 and 15'
     }
 
-    const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
-
     if (
-      (touched.email && !re.test(String(email).toLowerCase()))
+      (touched.email && !isEmail(email))
     ) {
       errors.email = 'Should be valid email'
     }
 
     if (
-      (touched.tel && tel.length < 7) ||
-      (touched.tel && tel.length > 15)
+      (touched.tel && !isLength(tel, { min: 7, max: 15 }))
     ) {
       errors.tel = 'Should be valid phone number'
     }
 
     if (
-      (touched.dateOfBirth && dateOfBirth.length < 1)
+      (touched.dateOfBirth && !isLength(dateOfBirth, { min: 1 }))
     ) {
       errors.dateOfBirth = 'Please, choose your birthday '
     }
 
     if (
-      (touched.color && color.length < 1)
+      (touched.color && !isLength(color, { min: 1 }))
     ) {
       errors.color = 'Please, choose your favorite color '
     }
 
     if (
-      (touched.weight && weight.length < 1)
+      (touched.weight && !isLength(weight, { min: 1 }))
     ) {
       errors.weight = 'Please, choose your weight '
     }
@@ -162,7 +159,7 @@ const App = () => {
     }
 
     if (
-      (touched.gender && gender === '')
+      (touched.gender && isEmpty(gender))
     ) {
       errors.gender = 'Please, choose your gender '
     }
@@ -182,10 +179,12 @@ const App = () => {
     }
 
     if (
-      (touched.bio && bio.length < 5)
+      (touched.bio && !isLength(bio, { min: 5 }))
     ) {
       errors.bio = 'Please, write a little about yourself '
     }
+
+    // !isLength(file, { min: 1 })  file.length < 1
 
     if (
       (touched.file && file.length < 1)
