@@ -1,16 +1,20 @@
-
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-// import App from './App'
-// import user from './data/userInfo'
-
-// const rootElement = document.getElementById('root')
-// ReactDOM.render(<App user={user} />, rootElement)
-
-// ========================================================
-
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
+
+const styles = {
+  app: {
+    paddingLeft: '3rem'
+  },
+  error: {
+    display: 'inline-block',
+    color: 'red',
+    fontSize: 10,
+    paddingBottom: '1rem'
+  },
+  submit: {
+    marginTop: '1rem'
+  }
+}
 
 const options = [
   {
@@ -35,85 +39,187 @@ const options = [
   },
 ]
 
-// mapping the options to list(array) of JSX options
-
 const selectOptions = options.map(({ value, label }) => (
-  <option key={label} value={value}>
-    {' '}
-    {label}
-  </option>
+  <option value={value} key={value}> {label}</option>
 ))
 
-const App = (props) => {
-  const initialState = {
+const App = () => {
+
+  const initialFormData = {
     firstName: '',
     lastName: '',
     email: '',
-    title: '',
-    country: '',
     tel: '',
     dateOfBirth: '',
-    favoriteColor: '',
+    color: '',
     weight: '',
+    country: '',
     gender: '',
-    file: '',
-    bio: '',
     skills: {
       html: false,
       css: false,
       javascript: false,
     },
-    touched: {
-      firstName: false,
-      lastName: false,
-    },
+    bio: '',
+    file: '',
+    touched: {}
   }
-  const [formData, setFormData] = useState(initialState)
 
-  const onChange = (e) => {
-    /*
-     we can get the name and value like: e.target.name, e.target.value
-    Wwe can also destructure name and value from e.target
-    const name = e.target.name
-    const value = e.target.value
-    */
+  const [formData, setFormData] = useState(initialFormData)
+
+  const {
+    firstName,
+    lastName,
+    email,
+    tel,
+    dateOfBirth,
+    color,
+    weight,
+    country,
+    gender,
+    skills,
+    bio,
+    file,
+    touched
+  } = formData
+
+
+  const handleChange = (e) => {
+
     const { name, value, type, checked } = e.target
-    /*
-    [variablename] we can make a value stored in a certain variable could be a key for an object, in this case a key for the state
-    */
 
     if (type === 'checkbox') {
       setFormData({
         ...formData,
-        skills: { ...formData.skills, [name]: checked },
+        skills: { ...skills, [name]: checked },
       })
     } else if (type === 'file') {
       setFormData({ ...formData, [name]: e.target.files[0] })
+      console.log('e.target.files.length: ', e.target.files.length);
     } else {
       setFormData({ ...formData, [name]: value })
     }
   }
-  const onSubmit = (e) => {
-    /*
-     e.preventDefault()
-     stops the default behavior of form element
-     specifically refreshing of page
-    */
+
+  const handleBlur = (e) => {
+    const { name } = e.target
+    setFormData({ ...formData, touched: { ...touched, [name]: true } })
+  }
+
+  const validate = () => {
+    const errors = {}
+    if (
+      (touched.firstName && firstName.length < 3) ||
+      (touched.firstName && firstName.length > 12)
+    ) {
+      errors.firstName = 'First name must be between 2 and 12'
+    }
+
+    if (
+      (touched.lastName && lastName.length < 3) ||
+      (touched.lastName && lastName.length > 15)
+    ) {
+      errors.lastName = 'Last name must be between 2 and 15'
+    }
+
+    const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+
+    if (
+      (touched.email && !re.test(String(email).toLowerCase()))
+    ) {
+      errors.email = 'Should be valid email'
+    }
+
+    if (
+      (touched.tel && tel.length < 7) ||
+      (touched.tel && tel.length > 15)
+    ) {
+      errors.tel = 'Should be valid phone number'
+    }
+
+    if (
+      (touched.dateOfBirth && dateOfBirth.length < 1)
+    ) {
+      errors.dateOfBirth = 'Please, choose your birthday '
+    }
+
+    if (
+      (touched.color && color.length < 1)
+    ) {
+      errors.color = 'Please, choose your favorite color '
+    }
+
+    if (
+      (touched.weight && weight.length < 1)
+    ) {
+      errors.weight = 'Please, choose your weight '
+    }
+
+    if (
+      (touched.country && country.length < 1)
+    ) {
+      errors.country = 'Please, choose your country '
+    }
+
+    if (
+      (touched.gender && gender === '')
+    ) {
+      errors.gender = 'Please, choose your gender '
+    }
+
+    if (
+      ((
+        touched.css
+        || touched.html
+        || touched.javascript
+      )
+        && skills.css === false
+        && skills.html === false
+        && skills.javascript === false
+      )
+    ) {
+      errors.skills = 'Select your skills '
+    }
+
+    if (
+      (touched.bio && bio.length < 5)
+    ) {
+      errors.bio = 'Please, write a little about yourself '
+    }
+
+    if (
+      (touched.file && file.length < 1)
+    ) {
+      errors.file = 'File not attached yet  '
+    }
+
+    return errors
+  }
+
+  const handleSubmit = errors => (e) => {
+    console.log('handleSubmit e: ', e);
+
     e.preventDefault()
+
+    const validityCheck = Object.keys(errors).length ? false : true
+    if (!validityCheck) {
+      alert(`Form is not valid. Check all fields, please ...`)
+      return
+    }
+
     const {
       firstName,
       lastName,
-      title,
       email,
       tel,
       dateOfBirth,
-      favoriteColor,
+      color,
       weight,
       country,
       gender,
+      skills,
       bio,
       file,
-      skills,
     } = formData
 
     const formattedSkills = []
@@ -126,251 +232,284 @@ const App = (props) => {
     const data = {
       firstName,
       lastName,
-      title,
       email,
       tel,
-      dateOfBirth,
-      favoriteColor,
-      weight,
       country,
       gender,
+      dateOfBirth,
+      weight,
+      color,
       bio,
       file,
       skills: formattedSkills,
     }
-    /*
-     the is the place where we connect backend api 
-     to send the data to the database
-     */
-    console.log(data)
-  }
-  const onBlur = (e) => {
-    const { name } = e.target
-    setFormData({ ...formData, touched: { ...formData.touched, [name]: true } })
-  }
-  const validate = () => {
-    // Object to collect error feedback and to display on the form
-    const errors = {
-      firstName: '',
-    }
 
-    if (
-      (formData.touched.firstName && formData.firstName.length < 3) ||
-      (formData.touched.firstName && formData.firstName.length > 12)
-    ) {
-      errors.firstName = 'First name must be between 2 and 12'
-    }
-    return errors
+    alert(JSON.stringify(data, null, 2))
+    setFormData(
+      {
+        firstName: '',
+        lastName: '',
+        email: '',
+        tel: '',
+        dateOfBirth: '',
+        color: '',
+        weight: '',
+        country: '',
+        gender: '',
+        skills: {
+          html: false,
+          css: false,
+          javascript: false,
+        },
+        bio: '',
+        file: '',
+        touched: {}
+      }
+    )
   }
 
-  // accessing the state value by destrutcturing the state
-  const {
-    firstName,
-    lastName,
-    title,
-    country,
-    email,
-    tel,
-    dateOfBirth,
-    favoriteColor,
-    weight,
-    gender,
-    bio,
-  } = formData
+  // let {
+  //   firstName,
+  //   lastName,
+  //   email,
+  //   tel,
+  //   dateOfBirth,
+  //   color,
+  //   weight,
+  //   // country,
+  //   gender,
+  //   // skills,
+  //   bio,
+  //   // file,
+  // } = formData
 
   const errors = validate()
 
   return (
-    <div className='App'>
+    <div className='App' style={styles.app} >
       <h3>Add Student</h3>
-      <form onSubmit={onSubmit}>
-        <div className='row'>
+      <form onSubmit={handleSubmit(errors)}>
+        <fieldset>
+          <legend>React Form and Form Validation</legend>
+          <div className='row'>
+            <div className='form-group'>
+              <label htmlFor='firstName'>First Name </label>
+              <input
+                type='text'
+                name='firstName'
+                value={firstName}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                placeholder='First Name'
+              /> <br />
+              <small style={styles.error}>{errors.firstName}</small>
+            </div>
+            <div className='form-group'>
+              <label htmlFor='lastName'>Last Name </label>
+              <input
+                type='text'
+                name='lastName'
+                value={lastName}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                placeholder='Last Name'
+              /> <br />
+              <small style={styles.error}>{errors.lastName}</small>
+            </div>
+            <div className='form-group'>
+              <label htmlFor='email'>Email </label>
+              <input
+                type='email'
+                name='email'
+                value={email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                placeholder='Email'
+              /><br />
+              <small style={styles.error}>{errors.email}</small>
+            </div>
+          </div>
+
           <div className='form-group'>
-            <label htmlFor='firstName'>First Name </label>
+            <label htmlFor='tel'>Telephone </label>
             <input
-              type='text'
-              id='firstName'
-              name='firstName'
-              value={firstName}
-              onChange={onChange}
-              onBlur={onBlur}
-              placeholder='First Name'
+              type='tel'
+              name='tel'
+              value={tel}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              placeholder='Tel'
+            /><br />
+            <small style={styles.error}>{errors.tel}</small>
+          </div>
+
+          <div className='form-group'>
+            <label htmlFor='dateOfBirth'>Date of birth </label>
+            <input
+              type='date'
+              name='dateOfBirth'
+              value={dateOfBirth}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              placeholder='Date of Birth'
+            /><br />
+            <small style={styles.error}>{errors.dateOfBirth}</small>
+          </div>
+          <div className='form-group'>
+            <label htmlFor='color'>Favorite Color</label>
+            <input
+              type='color'
+              id='color'
+              name='color'
+              value={color}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              placeholder='Favorite Color'
+            /><br />
+            <small style={styles.error}>{errors.color}</small>
+          </div>
+          <div className='form-group'>
+            <label htmlFor='weiht'>Weight </label>
+            <input
+              type='number'
+              id='weight'
+              name='weight'
+              value={weight}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              placeholder='Weight in Kg'
+            /><br />
+            <small style={styles.error}>{errors.weight}</small>
+          </div>
+          <div>
+            <label htmlFor='country'>Country</label> <br />
+            <select
+              type="select"
+              id='country'
+              name='country'
+              onChange={handleChange}
+              onBlur={handleBlur}
+            >
+              {selectOptions}
+            </select>
+            <br />
+            <small style={styles.error}>{errors.country}</small>
+          </div>
+
+          <div>
+            <p>Gender</p>
+            <div>
+              <input
+                type='radio'
+                id='female'
+                name='gender'
+                value='Female'
+                onChange={handleChange}
+                onBlur={handleBlur}
+                checked={gender === 'Female'}
+              />
+              <label htmlFor='female'>Female</label>
+            </div>
+            <div>
+              <input
+                id='male'
+                type='radio'
+                name='gender'
+                value='Male'
+                onChange={handleChange}
+                onBlur={handleBlur}
+                checked={gender === 'Male'}
+              />
+              <label htmlFor='male'>Male</label>
+            </div>
+            <div>
+              <input
+                id='other'
+                type='radio'
+                name='gender'
+                value='Other'
+                onChange={handleChange}
+                onBlur={handleBlur}
+                checked={gender === 'Other'}
+              />
+              <label htmlFor='other'>Other</label>
+            </div>
+            <br />
+            <small style={styles.error}>{errors.gender}</small>
+          </div>
+
+          <div>
+            <p>Select your skills</p>
+            <div>
+              <input
+                type='checkbox'
+                id='html'
+                name='html'
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <label htmlFor='html'>HTML</label>
+            </div>
+            <div>
+              <input
+                type='checkbox'
+                id='css'
+                name='css'
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <label htmlFor='css'>CSS</label>
+            </div>
+            <div>
+              <input
+                type='checkbox'
+                id='javascript'
+                name='javascript'
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <label htmlFor='javascript'>JavaScript</label>
+            </div>
+            {/* <br /> */}
+            <small style={styles.error}>{errors.skills}</small>
+          </div>
+          <div>
+            <label htmlFor='bio'>Bio</label> <br />
+            <textarea
+              id='bio'
+              name='bio'
+              value={bio}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              cols='120'
+              rows='10'
+              placeholder='Write about yourself ...'
             />
             <br />
-            {errors.firstName && <small>{errors.firstName}</small>}
+            <small style={styles.error}>{errors.bio}</small>
           </div>
-          <div className='form-group'>
-            <label htmlFor='lastName'>Last Name </label>
-            <input
-              type='text'
-              id='lastName'
-              name='lastName'
-              value={lastName}
-              onChange={onChange}
-              placeholder='Last Name'
-            />
-          </div>
-          <div className='form-group'>
-            <label htmlFor='title'>Title </label>
-            <input
-              type='text'
-              id='title'
-              name='title'
-              placeholder='Title'
-              value={title}
-              onChange={onChange}
-            />
-          </div>
-          <div className='form-group'>
-            <label htmlFor='email'>Email </label>
-            <input
-              type='email'
-              id='email'
-              name='email'
-              value={email}
-              onChange={onChange}
-              placeholder='Email'
-            />
-          </div>
-        </div>
 
-        <div className='form-group'>
-          <label htmlFor='tel'>Telephone </label>
-          <input
-            type='tel'
-            id='tel'
-            name='tel'
-            value={tel}
-            onChange={onChange}
-            placeholder='Tel'
-          />
-        </div>
-
-        <div className='form-group'>
-          <label htmlFor='dateOfBirth'>Date of birth </label>
-          <input
-            type='date'
-            id='dateOfBirth'
-            name='dateOfBirth'
-            value={dateOfBirth}
-            onChange={onChange}
-            placeholder='Date of Birth'
-          />
-        </div>
-        <div className='form-group'>
-          <label htmlFor='favoriteColor'>Favorite Color</label>
-          <input
-            type='color'
-            id='color'
-            name='favoriteColor'
-            value={favoriteColor}
-            onChange={onChange}
-            placeholder='Favorite Color'
-          />
-        </div>
-        <div className='form-group'>
-          <label htmlFor='weight'>Weight </label>
-          <input
-            type='number'
-            id='weight'
-            name='weight'
-            value={weight}
-            onChange={onChange}
-            placeholder='Weight in Kg'
-          />
-        </div>
-        <div>
-          <label htmlFor='country'>Country</label> <br />
-          <select
-            name='country'
-            onChange={onChange}
-            id='country'
-            value={country}
-          >
-            {selectOptions}
-          </select>
-        </div>
-
-        <div>
-          <p>Gender</p>
           <div>
             <input
-              type='radio'
-              id='female'
-              name='gender'
-              value='Female'
-              onChange={onChange}
-              checked={gender === 'Female'}
+              type='file'
+              name='file'
+              onChange={handleChange}
+              onBlur={handleBlur}
             />
-            <label htmlFor='female'>Female</label>
+            <br />
+            <small style={styles.error}>{errors.file}</small>
           </div>
-          <div>
-            <input
-              id='male'
-              type='radio'
-              name='gender'
-              value='Male'
-              onChange={onChange}
-              checked={gender === 'Male'}
-            />
-            <label htmlFor='male'>Male</label>
+          <div style={styles.submit}>
+            <button>Submit</button>
           </div>
-          <div>
-            <input
-              id='other'
-              type='radio'
-              name='gender'
-              value='Other'
-              onChange={onChange}
-              checked={gender === 'Other'}
-            />
-            <label htmlFor='other'>Other</label>
-          </div>
-        </div>
-
-        <div>
-          <p>Select your skills</p>
-          <div>
-            <input type='checkbox' id='html' name='html' onChange={onChange} />
-            <label htmlFor='html'>HTML</label>
-          </div>
-          <div>
-            <input type='checkbox' id='css' name='css' onChange={onChange} />
-            <label htmlFor='css'>CSS</label>
-          </div>
-          <div>
-            <input
-              type='checkbox'
-              id='javascript'
-              name='javascript'
-              onChange={onChange}
-            />
-            <label htmlFor='javascript'>JavaScript</label>
-          </div>
-        </div>
-        <div>
-          <label htmlFor='bio'>Bio</label> <br />
-          <textarea
-            id='bio'
-            name='bio'
-            value={bio}
-            onChange={onChange}
-            cols='120'
-            rows='10'
-            placeholder='Write about yourself ...'
-          />
-        </div>
-
-        <div>
-          <input type='file' name='file' onChange={onChange} />
-        </div>
-        <div>
-          <button>Submit</button>
-        </div>
+        </fieldset>
       </form>
     </div>
   )
+
 }
+
+
 
 const rootElement = document.getElementById('root')
 ReactDOM.render(<App />, rootElement)
