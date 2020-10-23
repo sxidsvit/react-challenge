@@ -267,21 +267,6 @@ const App = () => {
     )
   }
 
-  // let {
-  //   firstName,
-  //   lastName,
-  //   email,
-  //   tel,
-  //   dateOfBirth,
-  //   color,
-  //   weight,
-  //   // country,
-  //   gender,
-  //   // skills,
-  //   bio,
-  //   // file,
-  // } = formData
-
   const errors = validate()
 
   return (
@@ -505,10 +490,7 @@ const App = () => {
       </form>
     </div>
   )
-
 }
-
-
 
 const rootElement = document.getElementById('root')
 ReactDOM.render(<App />, rootElement)
