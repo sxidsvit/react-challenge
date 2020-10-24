@@ -1,5 +1,6 @@
 import React from 'react'
 import FlagCard from '../FlagCard/FlagCard';
+import './styles.css'
 
 const Main = ({ data }) => {
 

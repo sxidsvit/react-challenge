@@ -8,11 +8,28 @@
   background: #fff;
 }
 
+.country:hover {
+  box-shadow: 0 0.1rem 1rem #cfc9c7;
+  -webkit-transition: all .2s ease-in;
+  transform: scale(1.015);
+}
+
 .country_flag {
   height: 12rem;
   width: 20rem;
   text-align: center;
   margin: auto;
+}
+
+.country_flag img {
+  display: block;
+  margin: auto;
+  max-width: 75%;
+  max-height: 75%;
+  min-width: 75%;
+  min-height: 75%;
+  border-radius: .3rem;
+  box-shadow: 0 0 0.6rem 0.2rem #f1e1e1;
 }
 
 .country_name {
