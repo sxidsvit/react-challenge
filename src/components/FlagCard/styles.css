@@ -1,0 +1,33 @@
+.country {
+  max-width: 25rem;
+  min-width: 25rem;
+  text-align: center;
+  margin: .5rem;
+  padding: 2rem;
+  border-radius: .2rem;
+  background: #fff;
+}
+
+.country_flag {
+  height: 12rem;
+  width: 20rem;
+  text-align: center;
+  margin: auto;
+}
+
+.country_name {
+  font-size: 1.6rem;
+  color: orange;
+  letter-spacing: .075rem;
+  font-weight: bolder;
+  margin-bottom: 1rem;
+}
+
+.country p {
+  font-size: 1.6rem;
+  font-weight: 500;
+  padding: .2rem;
+  color: #747474;
+  text-align: left;
+  letter-spacing: .05rem;
+}

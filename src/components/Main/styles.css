@@ -1,0 +1,9 @@
+.countries-wrapper {
+  background: #f0f0f0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  justify-items: center;
+  margin: 1rem 0 3rem;
+  padding: 1rem;
+}

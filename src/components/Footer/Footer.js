@@ -11,7 +11,7 @@ const Footer = () => {
         <small>Re-created by
           <a href="https://github.com/sxidsvit/" target="_blank" rel="noopener noreferrer">Sergiy Antonyuk</a>
         </small>
-        <div class="arrow"><a href="#root"><i class="fas fa-arrow-alt-circle-up"></i></a></div>
+        <div className="arrow"><a href="#root"><i className="fas fa-arrow-alt-circle-up"></i></a></div>
       </div>
     </footer>
   )
