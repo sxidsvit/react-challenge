@@ -1,10 +1,10 @@
 import React from 'react'
+import './styles.css'
 
-import Header from './components/Header'
+import Header from './components/Header/Header'
 import Main from './components/Main'
-import Footer from './components/Footer'
+import Footer from './components/Footer/Footer'
 
-import ShowDate from './components/ShowDate'
 
 // class based component
 class App extends React.Component {
@@ -25,9 +25,7 @@ class App extends React.Component {
   minusOne = () => {
     this.setState({ count: this.state.count - 1 })
   }
-  handleTime = () => {
-    alert(<ShowDate time={(new Date())} />)
-  }
+
   greetPeople = () => {
     alert('Welcome to 30 Days Of React Challenge, 2020')
   }

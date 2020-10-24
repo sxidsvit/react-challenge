@@ -1,0 +1,28 @@
+.country-header {
+  display: block;
+  text-align: center;
+  padding: 1.5rem;
+  background: #f0f0f0;
+}
+
+.country-header h2 {
+  font-size: 4rem;
+  margin: .5rem auto;
+  letter-spacing: .25rem;
+  font-weight: 600;
+  color: orange;
+}
+
+.subtitle {
+  color: #555;
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+.feedback {
+  margin: .5rem;
+  font-style: italic;
+  font-size: 1.6rem;
+  color: orange;
+  font-weight: 500;
+}

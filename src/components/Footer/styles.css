@@ -1,0 +1,36 @@
+footer {
+  display: block;
+}
+
+.country-footer {
+  background: #f0f0f0;
+  font-size: 2.4rem;
+  color: #333;
+  font-weight: bolder;
+  margin-top: 20px;
+  font-weight: 300;
+  padding: 30px;
+  text-align: center;
+  width: 100%;
+}
+
+.footer-wrapper,
+.header-wrapper {
+  padding: 30px;
+  text-align: center;
+}
+
+small {
+  font-size: smaller;
+}
+
+.arrow {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 50px;
+}
+
+.arrow a i {
+  color: orange;
+  font-size: 56px;
+}
