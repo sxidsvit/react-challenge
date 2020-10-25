@@ -1,5 +1,6 @@
 import React from 'react'
 import FlagCard from '../FlagCard/FlagCard';
+import Search from '../Search/Search';
 import './styles.css'
 
 const Main = ({ data }) => {
@@ -8,6 +9,7 @@ const Main = ({ data }) => {
 
   return (
     <main>
+      <Search data={data} />
       <div className='countries-wrapper' >
         {flagCardList}
       </div>

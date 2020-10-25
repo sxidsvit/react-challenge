@@ -1,0 +1,36 @@
+.controls {
+  width: 100%;
+  text-align: center;
+  background-color: #fff;
+}
+
+.search-input {
+  color: orange;
+  width: 50%;
+  height: 5rem;
+  margin: 3rem auto;
+  text-indent: 2rem;
+  outline: none;
+  border: .2rem solid #f8e7e7;
+  font-size: 1.5rem;
+  border-radius: 3rem;
+  background: #faf6f6;
+  text-align: center;
+}
+
+.search-input:focus,
+.search-input:hover {
+  box-shadow: 0 0 0.1rem 0.1rem #ece6e6;
+  background: #faf6f6;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+i {
+  font-size: 56px;
+  color: orange;
+  font-weight: 600;
+}
