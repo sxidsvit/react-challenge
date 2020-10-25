@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import FlagCard from '../FlagCard/FlagCard';
+import Graphs from '../Graphs/Graphs';
 import Search from '../Search/Search';
 import './styles.css'
 
@@ -26,6 +27,9 @@ const Main = ({ data, setSearchResultLength }) => {
       />
       <div className='countries-wrapper' >
         {flagCardList}
+      </div>
+      <div className='graph-wrapper'>
+        <Graphs data={data} />
       </div>
     </main>
   )

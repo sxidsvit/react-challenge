@@ -1,0 +1,61 @@
+.graph-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.graph-buttons button {
+  display: inline-block;
+  width: 12rem;
+  height: 3rem;
+  cursor: pointer;
+  color: rgb(51, 51, 51);
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 0.075rem;
+  font-size: 1.25rem;
+  background: orange;
+  outline: none;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+  border-radius: 0.2rem;
+  margin: auto 0.5rem;
+}
+
+.graph-wrapper h4 {
+  text-align: center;
+  margin: .5rem 0;
+}
+
+.graph-title {
+  color: #333;
+  font-weight: 600;
+  font-size: 1.35rem;
+  padding: .5rem;
+}
+
+h4 {
+  display: block;
+  margin-block-start: 1.33em;
+  margin-block-end: 1.33em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+.graphs {
+  background: #f0f0f0;
+  position: relative;
+  padding: 1rem;
+}
+
+.graph-wrapper {
+  width: 100%;
+  min-height: 60vh;
+  position: relative;
+  margin: .5rem auto;
+  padding: .5rem;
+  box-shadow: 0 0 4px 1px rgba(51, 51, 51, .2);
+}
