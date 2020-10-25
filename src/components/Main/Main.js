@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import FlagCard from '../FlagCard/FlagCard';
 import Search from '../Search/Search';
 import './styles.css'
@@ -7,13 +7,14 @@ const Main = ({ data, setSearchResultLength }) => {
   const [search, setSearch] = useState('')
   const [searchResult, setSearchResult] = useState({})
 
-  const searchResultLength = searchResult.length
-  setSearchResultLength(searchResultLength)
+  useEffect(() => {
+    setSearchResultLength(searchResult.length)
+  }, [setSearchResultLength, searchResult.length])
+
 
   const dataForDisplaing = search ? searchResult : data
 
   const flagCardList = dataForDisplaing.map((c, inx) => <FlagCard country={c} key={inx} />)
-
 
   return (
     <main>
