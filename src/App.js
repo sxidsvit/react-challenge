@@ -9,6 +9,8 @@ import { } from 'react'
 const App = () => {
   const [countriesInfo, setCountriesInfo] = useState({})
   const [loading, setLoading] = useState(true)
+  const [searchResultLength, setSearchResultLength] = useState(0)
+
 
   const url = "https://restcountries.eu/rest/v2/all"
 
@@ -29,8 +31,11 @@ const App = () => {
 
   return (
     <div className='app' >
-      <Header />
-      { !loading ? <Main data={countriesInfo} /> : <p>Loading ...</p>}
+      <Header searchResultLength={searchResultLength} />
+      { !loading ? <Main
+        data={countriesInfo}
+        setSearchResultLength={setSearchResultLength}
+      /> : <p>Loading ...</p>}
       <Footer />
     </div>
   )

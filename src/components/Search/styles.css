@@ -18,6 +18,13 @@
   text-align: center;
 }
 
+.search-input::placeholder {
+  font-size: 1.5rem;
+  font-weight: 100;
+  opacity: .65;
+  color: #8a7373;
+}
+
 .search-input:focus,
 .search-input:hover {
   box-shadow: 0 0 0.1rem 0.1rem #ece6e6;

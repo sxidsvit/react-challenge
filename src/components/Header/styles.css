@@ -3,6 +3,7 @@
   text-align: center;
   padding: 1.5rem;
   background: #f0f0f0;
+  text-transform: uppercase;
 }
 
 .country-header h2 {
@@ -17,6 +18,7 @@
   color: #555;
   font-weight: 600;
   font-size: 1.6rem;
+  text-transform: none;
 }
 
 .feedback {
@@ -25,4 +27,5 @@
   font-size: 1.6rem;
   color: orange;
   font-weight: 500;
+  text-transform: none;
 }

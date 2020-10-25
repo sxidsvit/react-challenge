@@ -21,7 +21,9 @@ footer {
 }
 
 small {
-  font-size: smaller;
+  font-weight: 300;
+  font-size: 18px !important;
+  font-family: "Roboto" !important;
 }
 
 .arrow {

@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
 import './styles.css'
 
-const Search = ({ data }) => {
-
-  const [searchResult, setSearchResult] = useState({})
+const Search = ({ data, setSearchResult }) => {
 
   const [value, setValue] = useState('')
-
 
   const onSearchHandler = (e) => {
 
@@ -20,8 +17,6 @@ const Search = ({ data }) => {
     })
 
     setSearchResult(result)
-    console.log('searchResult: ', searchResult);
-
   }
 
   return (
