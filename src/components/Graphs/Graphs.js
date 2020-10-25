@@ -1,47 +1,64 @@
 import React, { useState } from 'react'
+import Bar from '../Bar/Bar'
 import _ from 'lodash'
 import './styles.css'
 
 const Graphs = ({ data }) => {
 
   const [oderedData, setOderedData] = useState([])
+  const [clickedButton, setClickedButton] = useState('')
 
+  const totalWorld = 7693165599
   const numberOfBars = 10
 
-  const onClickHandler = (e) => {
+  const onPopulationClickHandler = (e) => {
     const fieldName = e.target.value
     setOderedData(_.orderBy(data, fieldName, "desc").slice(0, numberOfBars))
+    setClickedButton('population')
   }
-  console.log('oderedData: ', oderedData);
 
+  const countriesList = []
+  // const totalWorld = oderedData[0].population
+  oderedData.map((country, inx) => {
+    return countriesList.push(
+      <Bar totalWorld={totalWorld} country={country} key={inx} />
+    )
+  })
   return (
     <>
-      <div className="graph-buttons">
+      <div className="graph-buttons" id="stat">
         <button
           className="population"
           value="population"
-          onClick={onClickHandler}>
+          onClick={onPopulationClickHandler}>
           Population
         </button>
         <button
           className="languages"
           value="languages"
-          onClick={onClickHandler} >
+        // onClick={onClickHandler}
+        >
           Languages
         </button>
       </div>
-      <h4 className="graph-title">10 Most populated countries in the world</h4>
 
+      {clickedButton === 'population'
+        && <h4 className="graph-title">
+          10 Most populated countries in the world</h4>
+      }
       <div className="graphs">
-        <div className="graph-wrapper" id="stat">
+        <div className="graph-wrapper" >
           <div className="graphWrapper">
-
             <div className="bars">
-              <div>World</div>
-              <div className="bar" style={{ width: "100%", height: "35px" }}></div>
-              <div>7&nbsp;693&nbsp;165&nbsp;599</div>
+              {clickedButton === 'population'
+                && [<Bar
+                  totalWorld={totalWorld}
+                  country={{
+                    name: "World",
+                    population: totalWorld
+                  }}
+                />, countriesList]}
             </div>
-
           </div>
         </div>
       </div>
