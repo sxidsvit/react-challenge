@@ -19,7 +19,6 @@ const App = () => {
       try {
         let res = await fetch(url)
         const fetchedData = await res.json()
-        // setLoading(false)
         setCountriesInfo(fetchedData)
         setLoading(false)
       } catch (e) {

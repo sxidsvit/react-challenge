@@ -1,19 +1,17 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './styles.css'
 
-const Search = ({ data, setSearchResult }) => {
-
-  const [value, setValue] = useState('')
+const Search = ({ data, search, setSearch, setSearchResult }) => {
 
   const onSearchHandler = (e) => {
 
-    const searchQueery = e.target.value
-    setValue(searchQueery)
+    const search = e.target.value
+    setSearch(search)
 
     const result = data.filter(item => {
-      return item.name.toLowerCase().includes(searchQueery.toLowerCase())
-        || item.capital.toLowerCase().includes(searchQueery.toLowerCase())
-        || item.languages.find(item => item.name.toLowerCase().includes(searchQueery.toLowerCase()))
+      return item.name.toLowerCase().includes(search.toLowerCase())
+        || item.capital.toLowerCase().includes(search.toLowerCase())
+        || item.languages.find(item => item.name.toLowerCase().includes(search.toLowerCase()))
     })
 
     setSearchResult(result)
@@ -25,7 +23,7 @@ const Search = ({ data, setSearchResult }) => {
         className="search-input"
         type="text"
         placeholder="Search countries by name, city and languages"
-        value={value}
+        value={search}
         onChange={onSearchHandler}
       />
       <div>
