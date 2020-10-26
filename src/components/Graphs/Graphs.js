@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import Bar from '../Bar/Bar'
+import { sortlanguages } from '../../Utils/utils'
 import _ from 'lodash'
 import './styles.css'
-import { sortlanguages } from '../../Utils/utils'
 
 const Graphs = ({ data }) => {
 
@@ -21,32 +21,32 @@ const Graphs = ({ data }) => {
   const onlanguagesClickHandler = (e) => {
     const fieldName = e.target.value
     const arrayOfLanguages = data.map(country => country[fieldName]).flat()
-    setOderedData(sortlanguages(arrayOfLanguages, numberOfBars))
+    setOderedData(sortlanguages(arrayOfLanguages))
     setClickedButton('languages')
   }
 
   const countriesList = []
   oderedData.map((country, inx) => {
+    const obj = {
+      name: country.name,
+      value: country.population
+    }
     return countriesList.push(
-      <Bar totalWorld={totalWorld} country={country} key={inx} />
+      <Bar total={totalWorld} barData={obj} key={inx} />
     )
   })
 
   const languagesList = []
-
-  oderedData.map((country, inx) => {
-
+  oderedData.slice(0, numberOfBars).map((country, inx) => {
     const obj = {
       name: Object.keys(country)[0],
-      population: Object.values(country)[0]
+      value: Object.values(country)[0]
     }
-    console.log('obj: ', obj);
-
+    const totalnNumberOfLanguages = oderedData.length
     return languagesList.push(
-      <Bar totalWorld={112} country={obj} key={inx} />
+      <Bar total={totalnNumberOfLanguages} barData={obj} key={inx} />
     )
   })
-
 
   return (
     <>
@@ -81,15 +81,16 @@ const Graphs = ({ data }) => {
             <div className="bars" >
               {clickedButton === 'population'
                 ? [<Bar
-                  totalWorld={totalWorld}
-                  country={{
+                  total={totalWorld}
+                  barData={{
                     name: "World",
-                    population: totalWorld
+                    value: totalWorld
                   }}
+                  key={totalWorld}
                 />, countriesList]
                 : clickedButton === 'languages'
                   ? [languagesList]
-                  : <h4 class="graph-title">
+                  : <h4 className="graph-title">
                     Click on any of the buttons
                   </h4>
               }

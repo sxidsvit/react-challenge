@@ -1,10 +1,8 @@
 import React from 'react'
 
-const Bar = ({ totalWorld, country: { name: country, population } }) => {
-  console.log('country: ', country);
-  console.log('population: ', population);
+const Bar = ({ total, barData: { name, value } }) => {
 
-  const countryBarWidth = `${population / totalWorld * 100}%`
+  const countryBarWidth = `${value / total * 100}%`
 
   const styles = {
     bar: {
@@ -37,15 +35,15 @@ const Bar = ({ totalWorld, country: { name: country, population } }) => {
     },
   }
 
-  const formatedPopulation = new Intl.NumberFormat().format(population)
+  const formatedValua = new Intl.NumberFormat().format(value)
 
   return (
     <div style={styles.bar} >
-      <div style={styles.countryName} >{country}</div>
+      <div style={styles.countryName} >{name}</div>
       <div style={styles.countryBar} >
         <div style={styles.countryBarColor} ></div>
       </div>
-      <div style={styles.countryPopulation}>{formatedPopulation}</div>
+      <div style={styles.countryPopulation}>{formatedValua}</div>
     </div>
   )
 }
