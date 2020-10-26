@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
+import useFetch from './Utils/useFetch'
 
 const Country = ({ country: { name, flag, population } }) => {
   return (
@@ -19,23 +20,8 @@ const Country = ({ country: { name, flag, population } }) => {
 }
 
 const App = (props) => {
-  // setting initial state and method to update state
-  const [data, setData] = useState([])
-
-  useEffect(() => {
-    fetchData()
-  }, [])
-
-  const fetchData = async () => {
-    const url = 'https://restcountries.eu/rest/v2/all'
-    try {
-      const response = await fetch(url)
-      const data = await response.json()
-      setData(data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  const url = 'https://restcountries.eu/rest/v2/all'
+  const data = useFetch(url)
 
   return (
     <div className='App'>
