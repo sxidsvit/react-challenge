@@ -35,5 +35,13 @@
    line-height: 25px;
    border-radius: 2px;
    font-size: 1rem;
+ }
 
+ .color-generator-row {
+   display: flex !important;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   width: 80%;
+   margin: 4rem auto 2rem;
  }

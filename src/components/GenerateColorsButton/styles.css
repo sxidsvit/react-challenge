@@ -1,0 +1,11 @@
+.generate-color-btn {
+  padding: 15px 35px;
+  font-size: 20px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  background: #595dff;
+  text-transform: uppercase;
+  outline: none;
+}
