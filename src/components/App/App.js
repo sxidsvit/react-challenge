@@ -26,11 +26,13 @@ const App = () => {
     <div className="container">
       <h1 className="title"> 30 Days Of React</h1>
       <h5 className="subtitle">Hexadecimal Colors</h5>
+
       <div className="color-generator-row">
         <GenerateColorsButton
           generateList={generateList}
         />
       </div>
+
       <div className="box-wrapper">
         {hexadecimalList}
       </div>
