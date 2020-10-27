@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useRef } from 'react'
+import './styles.css'
+
 
 const HexaColorBox = ({ hexaColor }) => {
-
+  const colorRef = useRef('')
   const bgcolor = hexaColor()
 
   const styles = {
@@ -31,11 +33,25 @@ const HexaColorBox = ({ hexaColor }) => {
     }
   }
 
+  const clickHandler = () => {
+    let hexCode = colorRef.current.innerText
+    navigator.clipboard.writeText(hexCode)
+    navigator.clipboard.readText()
+      .then(rez => console.log('Copied to clipboard: ', rez))
+  }
+
   return (
     <div style={styles.hexaColor}>
-      <small>{bgcolor}</small>
-      <i className="far fa-clipboard"
-        style={styles.clipboard}></i>
+      <small ref={colorRef}>
+        {bgcolor}
+      </small>
+      <div
+        className="wrapper__copy"
+        onClick={clickHandler}
+      >
+        <i className="far fa-clipboard copy"
+          style={styles.clipboard}></i>
+      </div>
     </div>
   )
 }
