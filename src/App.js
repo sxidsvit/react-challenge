@@ -3,15 +3,14 @@ import React, { useRef } from 'react'
 const App = (props) => {
   const ref = useRef(null)
   const onClick = () => {
-    let value = ref.current.value
-    alert(value)
+    ref.current.focus()
   }
   return (
     <div className='App'>
-      <h1>How to use data from uncontrolled input using useRef</h1>
+      <h1>How to focus on input element useRef</h1>
       <input type='text' ref={ref} />
       <br />
-      <button onClick={onClick}>Get Input Data</button>
+      <button onClick={onClick}>Click to Focus on input</button>
     </div>
   )
 }
