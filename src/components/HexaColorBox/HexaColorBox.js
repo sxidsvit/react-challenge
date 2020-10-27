@@ -11,9 +11,14 @@ const HexaColorBox = ({ hexaColor }) => {
     navigator.clipboard.writeText(hexCode)
     navigator.clipboard.readText()
       .then(rez => console.log('Copied to clipboard: ', rez))
-    let badgeInfo = badge.current.backgroundColor = "#21bf73"
-    console.log('badge.current: ', badge.current);
-    console.log('badgeInfo: ', badgeInfo);
+    badge.current.classList.remove('copy')
+    badge.current.classList.add('copied')
+
+    setTimeout(() => {
+      badge.current.classList.remove('copied')
+      badge.current.classList.add('copy')
+    }, 1000);
+
   }
 
   return (
@@ -24,10 +29,10 @@ const HexaColorBox = ({ hexaColor }) => {
          justify-content: center;
          align-items: center;
          position: relative;
-         min-width: 2vw;
-         max-height: 2vw;
-         min-height: 2vw;
-         border-radius: 100%;
+         min-width: 3vw;
+         max-height: 3vw;
+         min-height: 3vw;
+         {/* border-radius: 100%; */}
          /* background: rgba(74, 77, 251, .1); */
          text-align: center;
          color: #fff;
@@ -52,10 +57,19 @@ const HexaColorBox = ({ hexaColor }) => {
        }
 
        .copy:hover:before {
-         content: "Copy2";
+         content: "Copy";
          padding: 10px 15px;
          border-radius: 3px;
          background: rgba(70, 67, 67, .55);
+         font-weight: 500;
+       }
+
+       .copied:before {
+         content: "Copied";
+         background: #21bf73;
+         padding: 10px 15px;
+         border-radius: 3px;
+         font-size: 1rem;
          font-weight: 500;
        }
 
