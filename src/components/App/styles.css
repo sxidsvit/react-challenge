@@ -1,0 +1,32 @@
+.container {
+  font-size: 22px;
+  font-weight: 100;
+  color: black;
+  text-align: center;
+  margin: auto;
+}
+
+.title {
+  font-size: 60px;
+  margin: 20px 0px 0px;
+  font-weight: 500;
+  font-family: Roboto;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-size: 40px;
+  margin: 0px 0px 30px;
+  font-weight: 300;
+  font-family: Roboto;
+  text-transform: uppercase;
+}
+
+.box-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}
