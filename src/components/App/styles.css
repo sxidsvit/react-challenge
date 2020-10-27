@@ -1,9 +1,11 @@
 .container {
+  background-color: #F9F7F7;
   font-size: 22px;
   font-weight: 100;
   color: black;
   text-align: center;
-  margin: auto;
+  margin: 0 auto;
+  padding: 2rem 0rem 5rem;
 }
 
 .title {
@@ -21,6 +23,13 @@
   font-family: Roboto;
   text-transform: uppercase;
 }
+
+.color-generator-row {
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+
 
 .box-wrapper {
   display: flex;
