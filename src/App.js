@@ -3,14 +3,14 @@ import React, { useRef } from 'react'
 const App = (props) => {
   const ref = useRef(null)
   const onClick = () => {
-    ref.current.focus()
+    let content = ref.current.textContent
+    alert(content)
+    console.log(content)
   }
   return (
     <div className='App'>
-      <h1>How to focus on input element useRef</h1>
-      <input type='text' ref={ref} />
-      <br />
-      <button onClick={onClick}>Click to Focus on input</button>
+      <h1 ref={ref}>How to getting content from the DOM tree</h1>
+      <button onClick={onClick}>Getting Content</button>
     </div>
   )
 }
