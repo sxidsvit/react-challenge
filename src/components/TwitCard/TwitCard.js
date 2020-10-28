@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css'
 
-const TwitCard = ({ post: { id, firstName, lastName = '', nik = '', postContent, date } }) => {
+const TwitCard = ({ twit: { id, firstName, lastName = '', nik = '', postContent, date } }) => {
 
   return (
     <>
