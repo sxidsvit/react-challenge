@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css'
 
-const TwitCard = ({ twit: { id, firstName, lastName = '', nik = '', postContent, date }, deleteHandler }) => {
+const TwitCard = ({ twit: { id, firstName, lastName = '', nik = '', postContent, date }, deleteHandler, editHandler }) => {
 
   return (
     <>
@@ -17,7 +17,9 @@ const TwitCard = ({ twit: { id, firstName, lastName = '', nik = '', postContent,
         </div>
         <div className="post-detail">
           <div>
-            <i className="far fa-edit"></i>
+            <i className="far fa-edit"
+              onClick={editHandler(id)}
+            ></i>
             <i className="far fa-trash-alt"
               onClick={deleteHandler(id)}
             ></i>

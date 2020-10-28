@@ -1,0 +1,41 @@
+.twit-editing-wrapper {
+  padding: 1rem 0;
+  margin: 2rem auto;
+}
+
+textarea {
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.tweet-wrapper textarea {
+  width: 100%;
+  height: 100px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  color: #555;
+  background: #fcf8f3 !important;
+  padding: 15px;
+  resize: none;
+}
+
+.tweet-wrapper button {
+  border: none;
+  outline: none;
+  margin: 0.5rem 1rem;
+  width: 60px;
+  height: 30px;
+  color: #fff;
+  border-radius: 3px;
+  font-weight: lighter;
+}
+
+.tweet-wrapper .save-button {
+  background: #109de4;
+}
+
+.tweet-wrapper .cancel-button {
+  background: grey;
+}
