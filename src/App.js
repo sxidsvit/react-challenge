@@ -1,11 +1,12 @@
 import React from 'react'
 import TwitCard from './components/TwitCard/TwitCard'
-import { formatedData } from './utils'
+import { formatedData, generateId } from './utils'
 import './style.css'
 
 const App = () => {
 
   const post = {
+    id: generateId(),
     firstName: "Asabeneh",
     lastName: "Yetayeh",
     nik: "Asabeneh",

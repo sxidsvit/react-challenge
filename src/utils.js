@@ -1,5 +1,5 @@
-export const formatedData = (() => {
-  return new Intl.DateTimeFormat("en-US", {
+export const formatedData = ((locale = 'en-US') => {
+  return new Intl.DateTimeFormat(locale, {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -7,3 +7,8 @@ export const formatedData = (() => {
     minute: "numeric",
   }).format(Date.now())
 })
+
+export const generateId = () => {
+  const rez = Date.now().toString().slice(9, 13)
+  return parseInt(rez, 10)
+}
