@@ -1,0 +1,18 @@
+body,
+html {
+    line-height: 1.5;
+    font-size: 1rem;
+    font-family: Poppins;
+}
+
+span {
+    font-weight: 400;
+    color: #616161;
+}
+
+.tweet-wrapper {
+    width: 598px;
+    margin: 0 auto 50px;
+    border-radius: 3px;
+    border: 1px solid #e6ecf0;
+}
