@@ -1,4 +1,4 @@
-export const twitts = [
+export const data = [
   {
     id: 9883,
     firstName: "Sergiy",
