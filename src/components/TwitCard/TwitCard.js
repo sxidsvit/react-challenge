@@ -8,6 +8,7 @@ const TwitCard = ({ twit: { id, firstName, lastName = '', nik = '', postContent,
   const [editing, setEditing] = useState(false)
 
   const editHandler = (id) => () => {
+
     setCurrentTwit(twitts.filter(twit => twit.id === id)[0])
     setEditing(true)
   }
@@ -15,6 +16,7 @@ const TwitCard = ({ twit: { id, firstName, lastName = '', nik = '', postContent,
   const updateHandler = (value, id) => () => {
     currentTwit.postContent = value
     setEditing(false)
+    localStorage.setItem('twitts', JSON.stringify(twitts))
     setCurrentTwit('')
   }
   const cancelHandler = () => {
@@ -23,9 +25,10 @@ const TwitCard = ({ twit: { id, firstName, lastName = '', nik = '', postContent,
   }
 
   const deleteHandler = (id) => () => {
-    setTwitts(twitts.filter(twit => twit.id !== id))
+    const filterder = twitts.filter(twit => twit.id !== id)
+    setTwitts(filterder)
+    localStorage.setItem('twitts', JSON.stringify(filterder))
   }
-
 
   return (
     <>

@@ -23,30 +23,32 @@ const AddPost = ({ addTwitHandler }) => {
   }
 
   return (
-    <form onClick={addTwitHandler(value)}>
+    <form onSubmit={addTwitHandler(value)}>
       <div>
         <div className="form-group">
           <textarea
             name="Post"
             placeholder="Tweet about 30 Days Of React ..."
-            cols="90"
+            cols="80"
             rows="10"
             value={value}
             onChange={(e) => changeHandler(e)}
           >
           </textarea>
         </div>
-        <p className="other">250</p>
+        <p className="other">{250 - value.length}</p>
       </div>
       <div>
         <button
+          type="submit"
           ref={buttonRef}
           className="disabledButton"
           disabled
+        // onClick={addTwitHandler(value)}
         >
           Add Twit</button>
       </div>
-    </form>
+    </form >
   )
 }
 
