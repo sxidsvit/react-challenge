@@ -2,7 +2,30 @@ import React, { useState } from 'react'
 import TwitEditing from '../TwitEditing/TwitEditing'
 import './style.css'
 
-const TwitCard = ({ twit: { id, firstName, lastName = '', nik = '', postContent, date }, deleteHandler, editHandler, editing, currentTwit, updateHandler, cancelHandler }) => {
+const TwitCard = ({ twit: { id, firstName, lastName = '', nik = '', postContent, date }, twitts, setTwitts }) => {
+
+  const [currentTwit, setCurrentTwit] = useState('')
+  const [editing, setEditing] = useState(false)
+
+  const editHandler = (id) => () => {
+    setCurrentTwit(twitts.filter(twit => twit.id === id)[0])
+    setEditing(true)
+  }
+
+  const updateHandler = (value, id) => () => {
+    currentTwit.postContent = value
+    setEditing(false)
+    setCurrentTwit('')
+  }
+  const cancelHandler = () => {
+    setEditing(false)
+    setCurrentTwit('')
+  }
+
+  const deleteHandler = (id) => () => {
+    setTwitts(twitts.filter(twit => twit.id !== id))
+  }
+
 
   return (
     <>
