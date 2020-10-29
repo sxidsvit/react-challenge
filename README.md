@@ -8,9 +8,9 @@
 
 ---
 
-I have finished **first**.
+### _I have finished_ **first**.
 
-Here is feedback on the result of my participation from the training author Asabeneh
+#### Here is feedback on the result of my participation from the training author [Asabeneh](https://www.linkedin.com/in/asabeneh)
 
 ![Feedback](/src/assets/Asabeneh_feedback.jpg)
 
