@@ -8,9 +8,15 @@
 
 ---
 
+<<<<<<< HEAD
 ### _I have finished_ **first**.
 
 #### Here is feedback on the result of my participation from the training author [Asabeneh](https://www.linkedin.com/in/asabeneh)
+=======
+I have finished **first**.
+
+Here is feedback on the result of my participation from the training author Asabeneh
+>>>>>>> 7f485f50e8857f9e7a78290304b09506c188ce78
 
 ![Feedback](/src/assets/Asabeneh_feedback.jpg)
 
