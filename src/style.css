@@ -16,3 +16,11 @@ span {
     border-radius: 3px;
     border: 1px solid #e6ecf0;
 }
+
+.notwits {
+    text-align: center;
+    margin: 5rem 0 5rem;
+    font-weight: 500;
+    font-size: 3rem;
+    color: #109de4;
+}

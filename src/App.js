@@ -8,7 +8,7 @@ import './style.css'
 
 const App = () => {
 
-  const [twitts, setTwitts] = useState(data)
+  const [twitts, setTwitts] = useState('')
   const [currentTwit, setCurrentTwit] = useState('')
   const [editing, setEditing] = useState(false)
 
@@ -60,12 +60,14 @@ const App = () => {
         />}
 
       {
-        twitts.map(twit =>
-          <TwitCard twit={twit}
-            key={twit.id}
-            editHandler={editHandler}
-            deleteHandler={deleteHandler}
-          />)
+        twitts.length
+          ? twitts.map(twit =>
+            <TwitCard twit={twit}
+              key={twit.id}
+              editHandler={editHandler}
+              deleteHandler={deleteHandler}
+            />)
+          : <p className="notwits">You have no tweets</p>
       }
     </div>
   )

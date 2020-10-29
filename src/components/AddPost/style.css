@@ -1,0 +1,45 @@
+form {
+  height: 100%;
+  margin: 30px auto;
+}
+
+.tweet-wrapper form {
+  display: flex;
+  align-items: center;
+}
+
+.tweet-wrapper form p {
+  float: right;
+  margin: 0;
+  color: #21a2f2;
+  font-size: 12px;
+}
+
+p {
+  font-weight: 300;
+}
+
+.tweet-wrapper button {
+  border: none;
+  outline: none;
+  margin: 2px;
+  width: 60px;
+  height: 30px;
+  color: #fff;
+  border-radius: 3px;
+  font-weight: lighter;
+}
+
+.tweet-wrapper .disabledButton {
+  width: 100px;
+  height: 40px;
+  margin-left: 15px;
+  background: #92d0f0;
+}
+
+.tweet-wrapper .activeButton {
+  width: 100px;
+  height: 40px;
+  margin-left: 15px;
+  background: #1da1f2;
+}
