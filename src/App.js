@@ -23,8 +23,8 @@ const App = () => {
       date: formatedData()
     }
     const newTwitts = [newTwit, ...twitts]
-    localStorage.setItem('twitts', JSON.stringify(newTwitts))
     setTwitts(newTwitts)
+    localStorage.setItem('twitts', JSON.stringify(newTwitts))
   }
 
   return (
