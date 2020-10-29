@@ -1,67 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import AddPost from './components/AddPost/AddPost'
+import TwitsList from './components/TwitsList/TwitsList'
+import { formatedData, generateId, getLoacalStorage } from './utils'
+import './style.css'
 
-import Header from './components/Header'
-import Main from './components/Main'
-import Footer from './components/Footer'
+const App = () => {
 
-import ShowDate from './components/ShowDate'
+  const [twitts, setTwitts] = useState(getLoacalStorage())
 
-// class based component
-class App extends React.Component {
+  useEffect(() => {
+    getLoacalStorage()
+  }, [])
 
-  state = {
-    count: 0,
-    styles: {
-      backgroundColor: '#FFFFFF',
-      color: '#000000',
-    },
+  const addTwitHandler = (value) => () => {
+    const newTwit =
+    {
+      id: generateId(),
+      firstName: "Sergiy",
+      lastName: "Antonyuk",
+      nik: "sxidsvit",
+      postContent: value.trim(),
+      date: formatedData()
+    }
+    const newTwitts = [newTwit, ...twitts]
+    setTwitts(newTwitts)
+    localStorage.setItem('twitts', JSON.stringify(newTwitts))
   }
 
-  addOne = () => {
-    this.setState({ count: this.state.count + 1 })
-  }
-
-  // method which subtract one to the state
-  minusOne = () => {
-    this.setState({ count: this.state.count - 1 })
-  }
-  handleTime = () => {
-    alert(<ShowDate time={(new Date())} />)
-  }
-  greetPeople = () => {
-    alert('Welcome to 30 Days Of React Challenge, 2020')
-  }
-  changeBackground = () => {
-    const morningStyle = { backgroundColor: '#FFFFFF', color: '#000000', }
-    const eveningStyle = { backgroundColor: '#000000', color: '#FFFFFF', }
-    const styles = this.state.styles.backgroundColor === morningStyle.backgroundColor ? eveningStyle : morningStyle
-    this.setState({ styles })
-    console.log('this.state.styles: ', this.state.styles);
-  }
-
-  render() {
-
-    const { data, techs, photo } = this.props.user
-    const user = { ...data.author, image: photo }
-
-    return (
-      <div className='app' style={this.state.styles}>
-        <Header data={data} style={this.state.styles} />
-        <Main
-          style={this.state.styles}
-          user={user}
-          techs={techs}
-          handleTime={this.handleTime}
-          greetPeople={this.greetPeople}
-          changeBackground={this.changeBackground}
-          addOne={this.addOne}
-          minusOne={this.minusOne}
-          count={this.state.count}
-        />
-        <Footer date={new Date()} style={this.state.styles} />
-      </div>
-    )
-  }
+  return (
+    <div className="tweet-wrapper">
+      <AddPost addTwitHandler={addTwitHandler} />
+      <TwitsList twitts={twitts} setTwitts={setTwitts} />
+    </div>
+  )
 }
 
 export default App
