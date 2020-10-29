@@ -58,6 +58,19 @@ h4 {
   color: #92d0f0;
 }
 
+.tweet-wrapper .fa-comment:hover {
+  color: #21a2f2;
+}
+
+.tweet-wrapper .fa-heart:active,
+.tweet-wrapper .fa-heart:hover {
+  color: #e44d7c;
+}
+
+.tweet-wrapper .fa-retweet:hover {
+  color: #21c169;
+}
+
 .tweet-wrapper .tweeted-date {
   font-size: 16px !important;
   font-weight: 400;
