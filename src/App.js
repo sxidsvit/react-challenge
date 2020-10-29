@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import TwitCard from './components/TwitCard/TwitCard'
 import AddPost from './components/AddPost/AddPost'
-import TwitEditing from './components/TwitEditing/TwitEditing'
+// import TwitEditing from './components/TwitEditing/TwitEditing'
 import { data } from './data'
 import { formatedData, generateId } from './utils'
 import './style.css'
 
 const App = () => {
 
-  const [twitts, setTwitts] = useState('')
+  const [twitts, setTwitts] = useState(data)
   const [currentTwit, setCurrentTwit] = useState('')
   const [editing, setEditing] = useState(false)
 
@@ -42,7 +42,6 @@ const App = () => {
       postContent: value,
       date: formatedData()
     }
-    // data.unshift(newTwit)
     setTwitts(prev => [newTwit, ...prev])
   }
 
@@ -52,13 +51,6 @@ const App = () => {
 
       <AddPost addTwitHandler={addTwitHandler} />
 
-      {editing
-        && <TwitEditing
-          currentTwit={currentTwit}
-          updateHandler={updateHandler}
-          cancelHandler={cancelHandler}
-        />}
-
       {
         twitts.length
           ? twitts.map(twit =>
@@ -66,6 +58,11 @@ const App = () => {
               key={twit.id}
               editHandler={editHandler}
               deleteHandler={deleteHandler}
+              editing={editing}
+              setEditing={setEditing}
+              currentTwit={currentTwit}
+              updateHandler={updateHandler}
+              cancelHandler={cancelHandler}
             />)
           : <p className="notwits">You have no tweets</p>
       }

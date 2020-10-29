@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
+import TwitEditing from '../TwitEditing/TwitEditing'
 import './style.css'
 
-const TwitCard = ({ twit: { id, firstName, lastName = '', nik = '', postContent, date }, deleteHandler, editHandler }) => {
+const TwitCard = ({ twit: { id, firstName, lastName = '', nik = '', postContent, date }, deleteHandler, editHandler, editing, currentTwit, updateHandler, cancelHandler }) => {
 
   return (
     <>
+      {editing
+        && <TwitEditing
+          currentTwit={currentTwit}
+          updateHandler={updateHandler}
+          cancelHandler={cancelHandler}
+        />}
+
       <div className="post">
         <div className="user-info">
           <i className="fas fa-user"></i>
