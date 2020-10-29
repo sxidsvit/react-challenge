@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import TwitCard from './components/TwitCard/TwitCard'
-// import { formatedData, generateId } from './utils'
-import './style.css'
-import { data } from './data'
+import AddPost from './components/AddPost/AddPost'
 import TwitEditing from './components/TwitEditing/TwitEditing'
-
+import { data } from './data'
+import { formatedData, generateId } from './utils'
+import './style.css'
 
 const App = () => {
 
@@ -31,8 +31,26 @@ const App = () => {
     setTwitts(twitts.filter(twit => twit.id !== id))
   }
 
+  const addTwitHandler = (value) => () => {
+    console.log('value: ', value);
+    const newTwit =
+    {
+      id: generateId(),
+      firstName: "Sergiy",
+      lastName: "Antonyuk",
+      nik: "sxidsvit",
+      postContent: value,
+      date: formatedData()
+    }
+    // data.unshift(newTwit)
+    setTwitts(prev => [newTwit, ...prev])
+  }
+
+
   return (
     <div className="tweet-wrapper">
+
+      <AddPost addTwitHandler={addTwitHandler} />
 
       {editing
         && <TwitEditing
